@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Liquid Lifestyles — Swim Lessons</title>
+<style>
+  @font-face {
+    font-family: 'GT Walsheim Pro';
+    src: url('fonts/GTWalsheimProRegular/GTWalsheimPro-Regular.woff2') format('woff2'),
+         url('fonts/GTWalsheimProRegular/GTWalsheimPro-Regular.woff') format('woff'),
+         url('fonts/GTWalsheimProRegular/GTWalsheimPro-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'GT Walsheim Pro';
+    src: url('fonts/GTWalsheimProUltraBold/GT Walsheim Pro Ultra Bold.woff2') format('woff2'),
+         url('fonts/GTWalsheimProUltraBold/GT Walsheim Pro Ultra Bold.woff') format('woff'),
+         url('fonts/GTWalsheimProUltraBold/GT Walsheim Pro Ultra Bold.ttf') format('truetype'),
+         url('fonts/GTWalsheimProUltraBold/GT Walsheim Pro Ultra Bold.eot');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  body {
+    font-family: 'GT Walsheim Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  }
+
+  h1, h2, h3, h4, .headline {
+    font-family: 'GT Walsheim Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    font-weight: 800;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity .9s cubic-bezier(.2, .8, .2, 1),
+                transform .9s cubic-bezier(.2, .8, .2, 1);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+  .reveal-stagger > .reveal:nth-child(1) { transition-delay: 0ms; }
+  .reveal-stagger > .reveal:nth-child(2) { transition-delay: 80ms; }
+  .reveal-stagger > .reveal:nth-child(3) { transition-delay: 160ms; }
+  .reveal-stagger > .reveal:nth-child(4) { transition-delay: 240ms; }
+  .reveal-stagger > .reveal:nth-child(5) { transition-delay: 320ms; }
+  .reveal-stagger > .reveal:nth-child(6) { transition-delay: 400ms; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
+</style>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: '#0DC7F3',
+        },
+        fontFamily: {
+          sans: ['"GT Walsheim Pro"', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Helvetica', 'Arial', 'sans-serif'],
+          display: ['"GT Walsheim Pro"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        },
+      },
+    },
+  };
+</script>
+</head>
+<body class="bg-black text-white font-sans antialiased">
+
+<nav class="absolute top-0 left-0 right-0 z-30 flex items-center justify-between px-6 md:px-12 py-5">
+  <a href="/" class="block">
+    <img src="img/horizontal-Logo-White-Watermark.webp" alt="Liquid Lifestyles" class="h-10 md:h-14 w-auto" />
+  </a>
+  <ul class="hidden md:flex items-center gap-10 list-none">
+    <li><a href="#swim-lessons" class="text-white text-base lg:text-lg font-extrabold uppercase tracking-wide hover:text-brand transition">Swim Lessons</a></li>
+    <li><a href="#programs" class="text-white text-base lg:text-lg font-extrabold uppercase tracking-wide hover:text-brand transition">Programs</a></li>
+    <li><a href="#about" class="text-white text-base lg:text-lg font-extrabold uppercase tracking-wide hover:text-brand transition">About</a></li>
+    <li><a href="faqs.html" class="text-white text-base lg:text-lg font-extrabold uppercase tracking-wide hover:text-brand transition">FAQs</a></li>
+    <li><a href="locations.html" class="text-white text-base lg:text-lg font-extrabold uppercase tracking-wide hover:text-brand transition">Locations</a></li>
+  </ul>
+  <button id="menuToggle" class="md:hidden text-white p-2 -mr-2" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="3" y1="6" x2="21" y2="6"/>
+      <line x1="3" y1="12" x2="21" y2="12"/>
+      <line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+  </button>
+</nav>
+
+<div id="mobileMenu" class="fixed inset-0 z-50 bg-[#0a2840] md:hidden hidden flex-col" role="dialog" aria-modal="true" aria-label="Site navigation">
+  <div class="flex items-center justify-between px-6 py-5 border-b border-white/10">
+    <a href="/" class="block">
+      <img src="img/horizontal-Logo-White-Watermark.webp" alt="Liquid Lifestyles" class="h-10 w-auto" />
+    </a>
+    <button id="menuClose" class="text-white p-2 -mr-2" aria-label="Close menu">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+  <ul class="flex-1 flex flex-col items-center justify-center gap-8 list-none px-6">
+    <li><a href="#swim-lessons" class="mobile-link text-white text-3xl font-extrabold uppercase tracking-tight hover:text-brand transition">Swim Lessons</a></li>
+    <li><a href="#programs" class="mobile-link text-white text-3xl font-extrabold uppercase tracking-tight hover:text-brand transition">Programs</a></li>
+    <li><a href="#about" class="mobile-link text-white text-3xl font-extrabold uppercase tracking-tight hover:text-brand transition">About</a></li>
+    <li><a href="faqs.html" class="mobile-link text-white text-3xl font-extrabold uppercase tracking-tight hover:text-brand transition">FAQs</a></li>
+    <li><a href="locations.html" class="mobile-link text-white text-3xl font-extrabold uppercase tracking-tight hover:text-brand transition">Locations</a></li>
+  </ul>
+</div>
+
+<section class="relative h-screen min-h-[600px] overflow-hidden">
+  <video
+    class="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2 object-cover z-0"
+    autoplay
+    muted
+    loop
+    playsinline
+  >
+    <source src="img/8686025-hd_1920_1080_30fps.mp4" type="video/mp4" />
+  </video>
+
+  <div class="absolute inset-0 bg-black/55 z-10"></div>
+
+  <div class="relative z-20 h-full flex flex-col items-center justify-center text-center px-6">
+    <h1 class="text-4xl md:text-6xl font-bold leading-tight tracking-tight mb-4 max-w-3xl">
+      Find a Swim School Near You
+    </h1>
+    <p class="text-base md:text-xl text-white/90 mb-10 max-w-xl">
+      Enter your zip code to find the nearest Liquid Lifestyles location.
+    </p>
+
+    <form id="zipForm" class="w-full max-w-md md:max-w-lg flex flex-col md:flex-row gap-3 md:gap-0 md:bg-white md:rounded-full md:p-1.5 md:shadow-2xl">
+      <input
+        type="text"
+        id="zipInput"
+        name="zip"
+        placeholder="Enter your zip code"
+        inputmode="numeric"
+        pattern="[0-9]{5}"
+        maxlength="5"
+        required
+        aria-label="Zip code"
+        class="flex-1 min-w-0 px-5 py-4 text-base text-black bg-white rounded-full md:rounded-full outline-none placeholder:text-black/50"
+      />
+      <button
+        type="submit"
+        class="bg-brand hover:bg-brand/90 text-black font-semibold px-7 py-4 rounded-full transition whitespace-nowrap"
+      >
+        Find a Location
+      </button>
+    </form>
+  </div>
+</section>
+
+<section class="bg-white py-16 md:py-24 px-6 md:px-12">
+  <div class="max-w-7xl mx-auto">
+    <ul class="reveal-stagger grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 list-none">
+
+      <li class="reveal">
+        <a href="#swim-lessons" class="group relative block overflow-hidden rounded-2xl aspect-[4/5] shadow-sm hover:shadow-2xl transition">
+          <img src="img/feature-1.jpg" alt="Swim Lessons" class="parallax-img absolute left-0 right-0 -top-[8%] w-full h-[116%] object-cover will-change-transform" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent"></div>
+          <div class="absolute inset-x-0 bottom-0 p-6 md:p-8 text-white">
+            <h3 class="text-lg md:text-xl font-extrabold mb-2">Swim Lessons</h3>
+            <p class="text-white/90 leading-relaxed text-sm md:text-base line-clamp-2">
+              Lessons for every skill level — from first splash to championship form.
+            </p>
+          </div>
+        </a>
+      </li>
+
+      <li class="reveal">
+        <a href="#swim-assessment" class="group relative block overflow-hidden rounded-2xl aspect-[4/5] shadow-sm hover:shadow-2xl transition">
+          <img src="img/feature-2.jpg" alt="Swim Assessment" class="parallax-img absolute left-0 right-0 -top-[8%] w-full h-[116%] object-cover will-change-transform" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent"></div>
+          <div class="absolute inset-x-0 bottom-0 p-6 md:p-8 text-white">
+            <h3 class="text-lg md:text-xl font-extrabold mb-2">Swim Assessment</h3>
+            <p class="text-white/90 leading-relaxed text-sm md:text-base line-clamp-2">
+              We'll watch your swimmer and pick the class that fits them best.
+            </p>
+          </div>
+        </a>
+      </li>
+
+      <li class="reveal">
+        <a href="#pricing" class="group relative block overflow-hidden rounded-2xl aspect-[4/5] shadow-sm hover:shadow-2xl transition">
+          <img src="img/getty-images-AGok1O_cseA-unsplash.jpg" alt="Pricing" class="parallax-img absolute left-0 right-0 -top-[8%] w-full h-[116%] object-cover will-change-transform" />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent"></div>
+          <div class="absolute inset-x-0 bottom-0 p-6 md:p-8 text-white">
+            <h3 class="text-lg md:text-xl font-extrabold mb-2">Pricing</h3>
+            <p class="text-white/90 leading-relaxed text-sm md:text-base line-clamp-2">
+              Private lessons, group classes, and family-friendly bundles.
+            </p>
+          </div>
+        </a>
+      </li>
+
+    </ul>
+  </div>
+</section>
+
+<section class="bg-white py-16 md:py-24 px-6 md:px-12">
+  <div class="max-w-7xl mx-auto">
+
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-10 md:mb-14">
+      <div>
+        <p class="text-xs md:text-sm font-extrabold uppercase tracking-widest text-brand mb-3">Our Classes</p>
+        <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-black">Find the right level</h2>
+      </div>
+      <p class="text-black/70 text-base md:text-lg max-w-md normal-case">
+        From first splashes to flip turns — every age, every skill level.
+      </p>
+    </div>
+
+    <ul class="reveal-stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 list-none">
+
+      <li class="reveal">
+        <a href="baby-bubbles.html" class="group relative block aspect-square rounded-2xl p-6 md:p-8 overflow-hidden transition hover:-translate-y-1" style="background-color:#0DC7F3;">
+          <p class="text-[10px] md:text-xs font-extrabold uppercase tracking-widest text-black/70 mb-2">6 mo – 3 yrs</p>
+          <h3 class="text-2xl md:text-3xl font-extrabold leading-none text-black mb-2">Baby Bubbles</h3>
+          <p class="text-black/70 text-base md:text-xl leading-snug normal-case max-w-[20ch]">Parent &amp; child water-comfort.</p>
+          <span class="absolute bottom-5 right-5 inline-flex items-center justify-center w-10 h-10 rounded-full bg-black text-white transition group-hover:translate-x-1">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </span>
+        </a>
+      </li>
+
+      <li class="reveal">
+        <a href="liquid-bubbles.html" class="group relative block aspect-square rounded-2xl p-6 md:p-8 overflow-hidden transition hover:-translate-y-1" style="background-color:#0aadd4;">
+          <p class="text-[10px] md:text-xs font-extrabold uppercase tracking-widest text-white/80 mb-2">3 – 4 yrs</p>
+          <h3 class="text-2xl md:text-3xl font-extrabold leading-none text-white mb-2">Liquid Bubbles</h3>
+          <p class="text-white/85 text-base md:text-xl leading-snug normal-case max-w-[20ch]">First lessons without a parent in the water.</p>
+          <span class="absolute bottom-5 right-5 inline-flex items-center justify-center w-10 h-10 rounded-full bg-white text-black transition group-hover:translate-x-1">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </span>
+        </a>
+      </li>
+
+      <li class="reveal">
+        <a href="liquid-medals.html" class="group relative block aspect-square rounded-2xl p-6 md:p-8 overflow-hidden transition hover:-translate-y-1" style="background-color:#024c5e;">
+          <p class="text-[10px] md:text-xs font-extrabold uppercase tracking-widest text-brand mb-2">4 – 12 yrs</p>
+          <h3 class="text-2xl md:text-3xl font-extrabold leading-none text-white mb-2">Liquid Medals</h3>
+          <p class="text-white/80 text-base md:text-xl leading-snug normal-case max-w-[20ch]">Stroke development for growing swimmers.</p>
+          <span class="absolute bottom-5 right-5 inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand text-black transition group-hover:translate-x-1">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </span>
+        </a>
+      </li>
+
+      <li class="reveal">
+        <a href="private-lessons.html" class="group relative block aspect-square rounded-2xl p-6 md:p-8 overflow-hidden transition hover:-translate-y-1" style="background-color:#0a2840;">
+          <p class="text-[10px] md:text-xs font-extrabold uppercase tracking-widest text-brand mb-2">All Ages</p>
+          <h3 class="text-2xl md:text-3xl font-extrabold leading-none text-white mb-2">Private Lessons</h3>
+          <p class="text-white/80 text-base md:text-xl leading-snug normal-case max-w-[20ch]">One-on-one coaching, fully personalized.</p>
+          <span class="absolute bottom-5 right-5 inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand text-black transition group-hover:translate-x-1">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </span>
+        </a>
+      </li>
+
+      <li class="reveal">
+        <a href="adult-programs.html" class="group relative block aspect-square rounded-2xl p-6 md:p-8 overflow-hidden transition hover:-translate-y-1" style="background-color:#ee6c4d;">
+          <p class="text-[10px] md:text-xs font-extrabold uppercase tracking-widest text-white/85 mb-2">15+ yrs</p>
+          <h3 class="text-2xl md:text-3xl font-extrabold leading-none text-white mb-2">Adult Programs</h3>
+          <p class="text-white/90 text-base md:text-xl leading-snug normal-case max-w-[20ch]">Beginner to stroke refinement — no judgment.</p>
+          <span class="absolute bottom-5 right-5 inline-flex items-center justify-center w-10 h-10 rounded-full bg-white text-black transition group-hover:translate-x-1">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </span>
+        </a>
+      </li>
+
+      <li class="reveal">
+        <a href="find-your-class.html" class="group relative block aspect-square rounded-2xl p-6 md:p-8 overflow-hidden transition hover:-translate-y-1" style="background-color:#f4d35e;">
+          <p class="text-[10px] md:text-xs font-extrabold uppercase tracking-widest text-black/70 mb-2">Get Started</p>
+          <h3 class="text-2xl md:text-3xl font-extrabold leading-none text-black mb-3">Not sure where to start?</h3>
+          <p class="text-black/75 text-base md:text-xl leading-snug normal-case max-w-[22ch] mb-6">
+            Take our 2-minute quiz and we'll match your swimmer to the right class.
+          </p>
+          <span class="inline-flex items-center gap-2 bg-black text-white font-extrabold uppercase tracking-wide text-sm px-5 py-2.5 rounded-full transition group-hover:bg-white group-hover:text-black">
+            Take the Quiz
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </span>
+        </a>
+      </li>
+
+    </ul>
+  </div>
+</section>
+
+<section class="w-full bg-[#0a2840] py-16 md:py-24 px-6 md:px-12">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-3 rounded-2xl overflow-hidden shadow-2xl">
+
+      <div class="md:col-span-2 bg-[#0aadd4] text-white p-8 md:p-14 lg:p-16 flex flex-col justify-center">
+        <p class="text-xs md:text-sm font-extrabold uppercase tracking-widest text-white/80 mb-4">
+          Year-round Indoor Pools
+        </p>
+        <h2 class="text-3xl md:text-5xl font-extrabold leading-tight tracking-tight mb-5">
+          Confident swimmers start here
+        </h2>
+        <p class="text-white/90 text-base md:text-lg leading-relaxed max-w-xl mb-8 normal-case">
+          Warm 90° water, certified instructors, and a small-class promise — so every kid feels safe enough to try, and proud enough to keep going.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="locations.html" class="inline-flex items-center justify-center bg-brand hover:bg-brand/90 text-black font-extrabold uppercase tracking-wide px-7 py-3 rounded-full transition">
+            Find a School
+          </a>
+          <a href="#swim-lessons" class="inline-flex items-center justify-center bg-white/15 hover:bg-white/25 text-white font-extrabold uppercase tracking-wide px-7 py-3 rounded-full transition">
+            Browse Lessons
+          </a>
+        </div>
+      </div>
+
+      <div class="md:col-span-1 relative min-h-[260px] md:min-h-0">
+        <img src="img/feature-2.jpg" alt="Kids learning to swim" class="absolute inset-0 w-full h-full object-cover" />
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer class="bg-black text-white border-t border-white/10">
+
+  <section class="border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 py-14 md:py-20 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+      <div>
+        <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight mb-4">Stay in the swim of things</h2>
+        <p class="text-white/70 text-base md:text-lg leading-relaxed max-w-lg">
+          Get water-safety tips, class openings, and seasonal promos in your inbox. No spam — just the good stuff for swim families.
+        </p>
+      </div>
+
+      <div class="w-full">
+        <form class="flex items-stretch bg-white rounded-full p-1.5 shadow-2xl">
+          <input
+            type="email"
+            name="email"
+            autocomplete="email"
+            placeholder="Enter your email"
+            aria-label="Email address"
+            class="flex-1 min-w-0 px-5 py-3 text-base text-black bg-transparent rounded-full outline-none placeholder:text-black/50"
+          />
+          <button type="submit" aria-label="Subscribe" class="flex items-center justify-center bg-brand hover:bg-brand/90 text-black w-12 h-12 rounded-full transition flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </button>
+        </form>
+
+        <p class="text-white/50 text-xs mt-3">
+          Protected by reCAPTCHA. Your details stay yours — see our
+          <a href="#privacy" class="underline hover:text-brand">Privacy Policy</a>.
+        </p>
+
+        <div class="flex items-center gap-5 mt-6">
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-white/80 hover:text-brand transition">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+          </a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="text-white/80 hover:text-brand transition">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+            </svg>
+          </a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="text-white/80 hover:text-brand transition">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/>
+              <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/>
+            </svg>
+          </a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="text-white/80 hover:text-brand transition">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43V8.94a8.16 8.16 0 0 0 4.77 1.52V7a4.84 4.84 0 0 1-1.84-.31z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 py-14 md:py-16 grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 lg:gap-16">
+      <div>
+        <a href="/" class="inline-block">
+          <img src="img/horizontal-Logo-White-Watermark.webp" alt="Liquid Lifestyles" class="h-14 w-auto" />
+        </a>
+        <h2 class="mt-5 text-2xl tracking-tight leading-tight">
+          Confident<br>
+          <span class="text-brand">Swimmers<sup class="text-base align-super">™</sup></span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-10">
+
+        <div>
+          <h3 class="text-sm font-bold uppercase tracking-wider mb-4 text-brand">Get in Touch</h3>
+          <ul class="space-y-3 list-none">
+            <li><a href="#contact" class="text-sm text-white/80 hover:text-brand transition">Contact</a></li>
+            <li><a href="locations.html" class="text-sm text-white/80 hover:text-brand transition">Find a School</a></li>
+            <li><a href="#parties" class="text-sm text-white/80 hover:text-brand transition">Pool Parties</a></li>
+            <li><a href="#careers" class="text-sm text-white/80 hover:text-brand transition">Careers</a></li>
+            <li><a href="#franchise" class="text-sm text-white/80 hover:text-brand transition">Own a Franchise</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-sm font-bold uppercase tracking-wider mb-4 text-brand">Learn More</h3>
+          <ul class="space-y-3 list-none">
+            <li><a href="#about" class="text-sm text-white/80 hover:text-brand transition">About Us</a></li>
+            <li><a href="#water-safety" class="text-sm text-white/80 hover:text-brand transition">Water Safety</a></li>
+            <li><a href="#philosophy" class="text-sm text-white/80 hover:text-brand transition">Our Philosophy</a></li>
+            <li><a href="#testimonials" class="text-sm text-white/80 hover:text-brand transition">Testimonials</a></li>
+            <li><a href="#blog" class="text-sm text-white/80 hover:text-brand transition">Blog</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-sm font-bold uppercase tracking-wider mb-4 text-brand">Programs</h3>
+          <ul class="space-y-3 list-none">
+            <li><a href="#swim-lessons" class="text-sm text-white/80 hover:text-brand transition">Swim Lessons</a></li>
+            <li><a href="#swim-assessment" class="text-sm text-white/80 hover:text-brand transition">Swim Assessment</a></li>
+            <li><a href="#family-swim" class="text-sm text-white/80 hover:text-brand transition">Family Swim</a></li>
+            <li><a href="#clinics" class="text-sm text-white/80 hover:text-brand transition">Technique Clinics</a></li>
+            <li><a href="faqs.html" class="text-sm text-white/80 hover:text-brand transition">FAQs</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="max-w-7xl mx-auto px-6 md:px-12 py-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand/15 text-brand">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 20c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>
+            <path d="M2 16c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>
+            <path d="M18 6a2 2 0 1 0-4 0c0 1.5.7 2.3 2 4l-6 4"/>
+          </svg>
+        </span>
+        <span class="text-xs uppercase tracking-wider text-white/60 leading-tight">
+          Certified Water Safety Instructors —<br class="hidden sm:block">
+          U.S. Swim School Association Member
+        </span>
+      </div>
+
+      <div class="flex flex-col md:flex-row md:items-center gap-3 md:gap-6 text-xs text-white/60">
+        <span>© 2026 Liquid Lifestyles. All rights reserved.</span>
+        <div class="flex flex-wrap gap-x-5 gap-y-2">
+          <a href="#privacy" class="hover:text-brand transition">Privacy</a>
+          <a href="#terms" class="hover:text-brand transition">Terms of Use</a>
+          <a href="#accessibility" class="hover:text-brand transition">Accessibility</a>
+          <button type="button" class="hover:text-brand transition text-left">Manage Privacy Preferences</button>
+        </div>
+      </div>
+    </div>
+    <p class="max-w-7xl mx-auto px-6 md:px-12 pb-8 text-white/40 text-xs leading-relaxed">
+      *Liquid Lifestyles is committed to year-round water safety. Adult supervision is required at all times — swim lessons reduce, but never eliminate, the risk of drowning.
+    </p>
+  </section>
+
+</footer>
+
+<script>
+  document.getElementById('zipForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var zip = document.getElementById('zipInput').value.trim();
+    if (!/^\d{5}$/.test(zip)) {
+      alert('Please enter a valid 5-digit zip code.');
+      return;
+    }
+    window.location.href = 'locations.html?zip=' + encodeURIComponent(zip);
+  });
+
+  (function () {
+    var els = document.querySelectorAll('.reveal');
+    if (!els.length || !('IntersectionObserver' in window)) {
+      els.forEach(function (el) { el.classList.add('is-visible'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-visible');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    els.forEach(function (el) { io.observe(el); });
+  })();
+
+  (function () {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    var imgs = document.querySelectorAll('.parallax-img');
+    if (!imgs.length) return;
+
+    var ticking = false;
+    var vh = window.innerHeight;
+
+    function update() {
+      ticking = false;
+      imgs.forEach(function (img) {
+        var rect = img.getBoundingClientRect();
+        if (rect.bottom < -100 || rect.top > vh + 100) return;
+        // progress: -1 when card center is at bottom of viewport, +1 when at top
+        var progress = ((rect.top + rect.height / 2) - vh / 2) / (vh / 2);
+        // clamp and shift subtly (max ±24px)
+        var y = Math.max(-1, Math.min(1, progress)) * -24;
+        img.style.transform = 'translate3d(0,' + y.toFixed(2) + 'px,0)';
+      });
+    }
+
+    function onScroll() {
+      if (!ticking) {
+        window.requestAnimationFrame(update);
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', function () { vh = window.innerHeight; update(); });
+    update();
+  })();
+
+  (function () {
+    var menu = document.getElementById('mobileMenu');
+    var toggle = document.getElementById('menuToggle');
+    var close = document.getElementById('menuClose');
+    var links = menu.querySelectorAll('.mobile-link');
+
+    function open() {
+      menu.classList.remove('hidden');
+      menu.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+      toggle.setAttribute('aria-expanded', 'true');
+    }
+    function shut() {
+      menu.classList.add('hidden');
+      menu.classList.remove('flex');
+      document.body.style.overflow = '';
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+
+    toggle.addEventListener('click', open);
+    close.addEventListener('click', shut);
+    links.forEach(function (l) { l.addEventListener('click', shut); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !menu.classList.contains('hidden')) shut();
+    });
+  })();
+</script>
+
+</body>
+</html>

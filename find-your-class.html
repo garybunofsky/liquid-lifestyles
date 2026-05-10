@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Find Your Class — Liquid Lifestyles</title>
+<style>
+  @font-face {
+    font-family: 'GT Walsheim Pro';
+    src: url('fonts/GTWalsheimProRegular/GTWalsheimPro-Regular.woff2') format('woff2'),
+         url('fonts/GTWalsheimProRegular/GTWalsheimPro-Regular.woff') format('woff'),
+         url('fonts/GTWalsheimProRegular/GTWalsheimPro-Regular.ttf') format('truetype');
+    font-weight: 400; font-style: normal; font-display: swap;
+  }
+  @font-face {
+    font-family: 'GT Walsheim Pro';
+    src: url('fonts/GTWalsheimProUltraBold/GT Walsheim Pro Ultra Bold.woff2') format('woff2'),
+         url('fonts/GTWalsheimProUltraBold/GT Walsheim Pro Ultra Bold.woff') format('woff'),
+         url('fonts/GTWalsheimProUltraBold/GT Walsheim Pro Ultra Bold.ttf') format('truetype'),
+         url('fonts/GTWalsheimProUltraBold/GT Walsheim Pro Ultra Bold.eot');
+    font-weight: 800; font-style: normal; font-display: swap;
+  }
+  body { font-family: 'GT Walsheim Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; }
+  h1, h2, h3, h4, .headline { font-family: 'GT Walsheim Pro', sans-serif; text-transform: uppercase; letter-spacing: 0.01em; font-weight: 800; }
+
+  /* Quiz step animation */
+  .quiz-step { display: none; }
+  .quiz-step.active { display: block; }
+
+  /* Big radio cards */
+  .opt {
+    display: block; cursor: pointer; position: relative;
+    background: rgba(2, 51, 73, 0.06);
+    border: 3px solid rgba(2, 51, 73, 0.18);
+    border-radius: 1.25rem;
+    padding: 1.5rem 1.75rem;
+    transition: background .15s ease, border-color .15s ease, transform .15s ease;
+  }
+  .opt:hover { background: rgba(2, 51, 73, 0.12); border-color: rgba(2, 51, 73, 0.4); transform: translateY(-2px); }
+  .opt input { position: absolute; opacity: 0; pointer-events: none; }
+  .opt .opt-dot {
+    width: 22px; height: 22px; border-radius: 9999px;
+    border: 3px solid #023349; flex-shrink: 0; margin-top: 4px;
+    background: transparent; transition: background .15s ease;
+  }
+  .opt input:checked ~ .opt-row .opt-dot { background: #023349; box-shadow: inset 0 0 0 4px #f4d35e; }
+  .opt:has(input:checked) {
+    background: #023349; color: #f4d35e;
+    border-color: #023349;
+  }
+  .opt:has(input:checked) .opt-dot { border-color: #f4d35e; background: #f4d35e; box-shadow: inset 0 0 0 4px #023349; }
+  .opt:has(input:checked) .opt-sub { color: rgba(244, 211, 94, 0.8); }
+  .opt-sub { color: rgba(2, 51, 73, 0.65); }
+
+  .pill-dark {
+    display: inline-flex; align-items: center; gap: .6rem;
+    background: #023349; color: #fff;
+    font-weight: 800; text-transform: uppercase; letter-spacing: .03em;
+    padding: 1rem 1.75rem; border-radius: 9999px;
+    transition: background .15s ease, color .15s ease;
+  }
+  .pill-dark:hover { background: #fff; color: #023349; }
+  .pill-dark[disabled] { opacity: .35; pointer-events: none; }
+  .pill-out {
+    display: inline-flex; align-items: center; gap: .6rem;
+    border: 3px solid #023349; color: #023349;
+    font-weight: 800; text-transform: uppercase; letter-spacing: .03em;
+    padding: calc(1rem - 3px) calc(1.75rem - 3px); border-radius: 9999px;
+    transition: background .15s ease, color .15s ease;
+    background: transparent;
+  }
+  .pill-out:hover { background: #023349; color: #f4d35e; }
+
+  .progress-bar {
+    height: 6px; background: rgba(2, 51, 73, 0.15); border-radius: 9999px; overflow: hidden;
+  }
+  .progress-bar > span {
+    display: block; height: 100%; background: #023349;
+    border-radius: 9999px; transition: width .35s ease;
+  }
+</style>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = { theme: { extend: {
+    colors: { brand: '#0DC7F3', ink: '#023349', sun: '#f4d35e' },
+    fontFamily: { sans: ['"GT Walsheim Pro"', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Helvetica', 'Arial', 'sans-serif'] },
+  } } };
+</script>
+</head>
+<body class="font-sans antialiased text-ink" style="background-color:#f4d35e;">
+
+<nav class="relative z-30 flex items-center justify-between px-6 md:px-12 py-5 bg-black">
+  <a href="index.html" class="block"><img src="img/horizontal-Logo-White-Watermark.webp" alt="Liquid Lifestyles" class="h-10 md:h-12 w-auto" /></a>
+  <ul class="hidden md:flex items-center gap-10 list-none">
+    <li><a href="index.html#swim-lessons" class="text-white text-base lg:text-lg font-extrabold uppercase tracking-wide hover:text-brand transition">Swim Lessons</a></li>
+    <li><a href="index.html#programs" class="text-white text-base lg:text-lg font-extrabold uppercase tracking-wide hover:text-brand transition">Programs</a></li>
+    <li><a href="index.html#about" class="text-white text-base lg:text-lg font-extrabold uppercase tracking-wide hover:text-brand transition">About</a></li>
+    <li><a href="faqs.html" class="text-white text-base lg:text-lg font-extrabold uppercase tracking-wide hover:text-brand transition">FAQs</a></li>
+    <li><a href="locations.html" class="text-white text-base lg:text-lg font-extrabold uppercase tracking-wide hover:text-brand transition">Locations</a></li>
+  </ul>
+  <button id="menuToggle" class="md:hidden text-white p-2 -mr-2" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+</nav>
+
+<div id="mobileMenu" class="fixed inset-0 z-50 bg-[#0a2840] md:hidden hidden flex-col" role="dialog" aria-modal="true" aria-label="Site navigation">
+  <div class="flex items-center justify-between px-6 py-5 border-b border-white/10">
+    <a href="index.html" class="block"><img src="img/horizontal-Logo-White-Watermark.webp" alt="Liquid Lifestyles" class="h-10 w-auto" /></a>
+    <button id="menuClose" class="text-white p-2 -mr-2" aria-label="Close menu"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+  </div>
+  <ul class="flex-1 flex flex-col items-center justify-center gap-8 list-none px-6">
+    <li><a href="index.html#swim-lessons" class="mobile-link text-white text-3xl font-extrabold uppercase tracking-tight hover:text-brand transition">Swim Lessons</a></li>
+    <li><a href="index.html#programs" class="mobile-link text-white text-3xl font-extrabold uppercase tracking-tight hover:text-brand transition">Programs</a></li>
+    <li><a href="index.html#about" class="mobile-link text-white text-3xl font-extrabold uppercase tracking-tight hover:text-brand transition">About</a></li>
+    <li><a href="faqs.html" class="mobile-link text-white text-3xl font-extrabold uppercase tracking-tight hover:text-brand transition">FAQs</a></li>
+    <li><a href="locations.html" class="mobile-link text-white text-3xl font-extrabold uppercase tracking-tight hover:text-brand transition">Locations</a></li>
+  </ul>
+</div>
+
+<header class="px-6 md:px-12 pt-16 md:pt-24 pb-8 md:pb-12">
+  <div class="max-w-4xl mx-auto">
+    <a href="index.html" class="inline-flex items-center gap-2 text-sm font-extrabold uppercase tracking-[0.2em] mb-6 hover:opacity-70 transition">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Back home
+    </a>
+    <p class="text-sm md:text-base font-extrabold uppercase tracking-[0.25em] mb-5">Find Your Class</p>
+    <h1 class="leading-[0.85] tracking-tight font-extrabold mb-6" style="font-size:clamp(3rem, 9vw, 7rem);">
+      Two minutes.<br>One perfect class.
+    </h1>
+    <p class="text-ink/80 text-lg md:text-xl normal-case max-w-2xl">
+      Answer a few quick questions and we'll point you to the right starting point.
+    </p>
+  </div>
+</header>
+
+<section class="px-6 md:px-12 pb-20 md:pb-28">
+  <div class="max-w-3xl mx-auto">
+
+    <div class="mb-10">
+      <div class="flex items-center justify-between text-xs font-extrabold uppercase tracking-[0.18em] mb-3">
+        <span id="stepLabel">Step 1 of 3</span>
+        <span id="stepCount">33%</span>
+      </div>
+      <div class="progress-bar"><span id="progressFill" style="width:33%"></span></div>
+    </div>
+
+    <form id="quizForm" novalidate>
+
+      <!-- STEP 1: Age -->
+      <div class="quiz-step active" data-step="1">
+        <h2 class="text-3xl md:text-5xl font-extrabold leading-tight mb-8">Who is the swimmer?</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
+          <label class="opt"><input type="radio" name="age" value="baby" required /><span class="opt-row flex items-start gap-4"><span class="opt-dot"></span><span><span class="block text-xl md:text-2xl font-extrabold uppercase">Baby / Toddler</span><span class="opt-sub block text-base normal-case mt-1">6 months – 3 years</span></span></span></label>
+          <label class="opt"><input type="radio" name="age" value="child-young" /><span class="opt-row flex items-start gap-4"><span class="opt-dot"></span><span><span class="block text-xl md:text-2xl font-extrabold uppercase">Young Child</span><span class="opt-sub block text-base normal-case mt-1">2.5 – 5 years</span></span></span></label>
+          <label class="opt"><input type="radio" name="age" value="child-older" /><span class="opt-row flex items-start gap-4"><span class="opt-dot"></span><span><span class="block text-xl md:text-2xl font-extrabold uppercase">Older Kid</span><span class="opt-sub block text-base normal-case mt-1">6 – 12 years</span></span></span></label>
+          <label class="opt"><input type="radio" name="age" value="adult" /><span class="opt-row flex items-start gap-4"><span class="opt-dot"></span><span><span class="block text-xl md:text-2xl font-extrabold uppercase">Teen / Adult</span><span class="opt-sub block text-base normal-case mt-1">13+ years</span></span></span></label>
+        </div>
+      </div>
+
+      <!-- STEP 2: Experience -->
+      <div class="quiz-step" data-step="2">
+        <h2 class="text-3xl md:text-5xl font-extrabold leading-tight mb-8">What's their experience level?</h2>
+        <div class="grid grid-cols-1 gap-3 md:gap-4">
+          <label class="opt"><input type="radio" name="experience" value="new" required /><span class="opt-row flex items-start gap-4"><span class="opt-dot"></span><span><span class="block text-xl md:text-2xl font-extrabold uppercase">Brand new</span><span class="opt-sub block text-base normal-case mt-1">Never had a lesson, or nervous in the water.</span></span></span></label>
+          <label class="opt"><input type="radio" name="experience" value="comfortable" /><span class="opt-row flex items-start gap-4"><span class="opt-dot"></span><span><span class="block text-xl md:text-2xl font-extrabold uppercase">Comfortable basics</span><span class="opt-sub block text-base normal-case mt-1">Floats, goes underwater, swims a few feet.</span></span></span></label>
+          <label class="opt"><input type="radio" name="experience" value="independent" /><span class="opt-row flex items-start gap-4"><span class="opt-dot"></span><span><span class="block text-xl md:text-2xl font-extrabold uppercase">Independent swimmer</span><span class="opt-sub block text-base normal-case mt-1">Swims across the pool comfortably.</span></span></span></label>
+          <label class="opt"><input type="radio" name="experience" value="competitive" /><span class="opt-row flex items-start gap-4"><span class="opt-dot"></span><span><span class="block text-xl md:text-2xl font-extrabold uppercase">Competitive</span><span class="opt-sub block text-base normal-case mt-1">On a swim team or training to race.</span></span></span></label>
+        </div>
+      </div>
+
+      <!-- STEP 3: Goal -->
+      <div class="quiz-step" data-step="3">
+        <h2 class="text-3xl md:text-5xl font-extrabold leading-tight mb-8">What's the main goal?</h2>
+        <div class="grid grid-cols-1 gap-3 md:gap-4">
+          <label class="opt"><input type="radio" name="goal" value="comfort" required /><span class="opt-row flex items-start gap-4"><span class="opt-dot"></span><span><span class="block text-xl md:text-2xl font-extrabold uppercase">Comfort &amp; safety</span><span class="opt-sub block text-base normal-case mt-1">Build a calm, positive relationship with the water.</span></span></span></label>
+          <label class="opt"><input type="radio" name="goal" value="learn" /><span class="opt-row flex items-start gap-4"><span class="opt-dot"></span><span><span class="block text-xl md:text-2xl font-extrabold uppercase">Learn to swim</span><span class="opt-sub block text-base normal-case mt-1">Build real swimming skills, step by step.</span></span></span></label>
+          <label class="opt"><input type="radio" name="goal" value="refine" /><span class="opt-row flex items-start gap-4"><span class="opt-dot"></span><span><span class="block text-xl md:text-2xl font-extrabold uppercase">Refine technique</span><span class="opt-sub block text-base normal-case mt-1">Faster times, cleaner strokes, smarter racing.</span></span></span></label>
+          <label class="opt"><input type="radio" name="goal" value="personal" /><span class="opt-row flex items-start gap-4"><span class="opt-dot"></span><span><span class="block text-xl md:text-2xl font-extrabold uppercase">Fully personal</span><span class="opt-sub block text-base normal-case mt-1">One-on-one coaching tailored to me.</span></span></span></label>
+        </div>
+      </div>
+
+      <!-- RESULT -->
+      <div class="quiz-step" data-step="result">
+        <p class="text-sm font-extrabold uppercase tracking-[0.25em] mb-4">Your match</p>
+        <h2 id="resultTitle" class="leading-[0.9] tracking-tight font-extrabold mb-6" style="font-size:clamp(2.5rem, 8vw, 5.5rem);">Loading…</h2>
+        <p id="resultDesc" class="text-ink/85 text-lg md:text-xl normal-case mb-8 max-w-2xl"></p>
+        <div class="flex flex-wrap gap-4 mb-8">
+          <a id="resultLink" href="#" class="pill-dark text-base">
+            See the program
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="locations.html" class="pill-out text-base">Find a location</a>
+        </div>
+        <button type="button" id="restartBtn" class="text-sm font-extrabold uppercase tracking-[0.18em] underline hover:opacity-70 transition">
+          Restart quiz
+        </button>
+      </div>
+
+      <!-- Nav buttons -->
+      <div id="quizNav" class="flex items-center justify-between mt-10 md:mt-14 pt-8 border-t-[3px] border-ink/15">
+        <button type="button" id="backBtn" class="pill-out text-sm" disabled style="opacity:.35;pointer-events:none;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          Back
+        </button>
+        <button type="button" id="nextBtn" class="pill-dark text-sm" disabled>
+          Next
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+      </div>
+    </form>
+
+  </div>
+</section>
+
+<footer class="bg-black text-white border-t border-white/10">
+  <section class="border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 py-14 md:py-20 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+      <div>
+        <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight mb-4">Stay in the swim of things</h2>
+        <p class="text-white/70 text-base md:text-lg leading-relaxed max-w-lg">Get water-safety tips, class openings, and seasonal promos in your inbox. No spam — just the good stuff for swim families.</p>
+      </div>
+      <div class="w-full">
+        <form class="flex items-stretch bg-white rounded-full p-1.5 shadow-2xl">
+          <input type="email" name="email" autocomplete="email" placeholder="Enter your email" aria-label="Email address" class="flex-1 min-w-0 px-5 py-3 text-base text-black bg-transparent rounded-full outline-none placeholder:text-black/50" />
+          <button type="submit" aria-label="Subscribe" class="flex items-center justify-center bg-brand hover:bg-brand/90 text-black w-12 h-12 rounded-full transition flex-shrink-0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+        </form>
+        <p class="text-white/50 text-xs mt-3">Protected by reCAPTCHA. Your details stay yours — see our <a href="#privacy" class="underline hover:text-brand">Privacy Policy</a>.</p>
+        <div class="flex items-center gap-5 mt-6">
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-white/80 hover:text-brand transition"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="text-white/80 hover:text-brand transition"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="text-white/80 hover:text-brand transition"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg></a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="text-white/80 hover:text-brand transition"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43V8.94a8.16 8.16 0 0 0 4.77 1.52V7a4.84 4.84 0 0 1-1.84-.31z"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 py-14 md:py-16 grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 lg:gap-16">
+      <div>
+        <a href="index.html" class="inline-block"><img src="img/horizontal-Logo-White-Watermark.webp" alt="Liquid Lifestyles" class="h-14 w-auto" /></a>
+        <h2 class="mt-5 text-2xl tracking-tight leading-tight">Confident<br><span class="text-brand">Swimmers<sup class="text-base align-super">™</sup></span></h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-10">
+        <div>
+          <h3 class="text-sm font-bold uppercase tracking-wider mb-4 text-brand">Get in Touch</h3>
+          <ul class="space-y-3 list-none">
+            <li><a href="#contact" class="text-sm text-white/80 hover:text-brand transition">Contact</a></li>
+            <li><a href="locations.html" class="text-sm text-white/80 hover:text-brand transition">Find a School</a></li>
+            <li><a href="#parties" class="text-sm text-white/80 hover:text-brand transition">Pool Parties</a></li>
+            <li><a href="#careers" class="text-sm text-white/80 hover:text-brand transition">Careers</a></li>
+            <li><a href="#franchise" class="text-sm text-white/80 hover:text-brand transition">Own a Franchise</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-sm font-bold uppercase tracking-wider mb-4 text-brand">Learn More</h3>
+          <ul class="space-y-3 list-none">
+            <li><a href="index.html#about" class="text-sm text-white/80 hover:text-brand transition">About Us</a></li>
+            <li><a href="#water-safety" class="text-sm text-white/80 hover:text-brand transition">Water Safety</a></li>
+            <li><a href="#philosophy" class="text-sm text-white/80 hover:text-brand transition">Our Philosophy</a></li>
+            <li><a href="#testimonials" class="text-sm text-white/80 hover:text-brand transition">Testimonials</a></li>
+            <li><a href="#blog" class="text-sm text-white/80 hover:text-brand transition">Blog</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-sm font-bold uppercase tracking-wider mb-4 text-brand">Programs</h3>
+          <ul class="space-y-3 list-none">
+            <li><a href="baby-bubbles.html" class="text-sm text-white/80 hover:text-brand transition">Baby Bubbles</a></li>
+            <li><a href="liquid-bubbles.html" class="text-sm text-white/80 hover:text-brand transition">Liquid Bubbles</a></li>
+            <li><a href="liquid-medals.html" class="text-sm text-white/80 hover:text-brand transition">Liquid Medals</a></li>
+            <li><a href="private-lessons.html" class="text-sm text-white/80 hover:text-brand transition">Private Lessons</a></li>
+            <li><a href="adult-programs.html" class="text-sm text-white/80 hover:text-brand transition">Adult Programs</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="max-w-7xl mx-auto px-6 md:px-12 py-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand/15 text-brand"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M2 16c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/><path d="M18 6a2 2 0 1 0-4 0c0 1.5.7 2.3 2 4l-6 4"/></svg></span>
+        <span class="text-xs uppercase tracking-wider text-white/60 leading-tight">Certified Water Safety Instructors —<br class="hidden sm:block">U.S. Swim School Association Member</span>
+      </div>
+      <div class="flex flex-col md:flex-row md:items-center gap-3 md:gap-6 text-xs text-white/60">
+        <span>© 2026 Liquid Lifestyles. All rights reserved.</span>
+        <div class="flex flex-wrap gap-x-5 gap-y-2">
+          <a href="#privacy" class="hover:text-brand transition">Privacy</a>
+          <a href="#terms" class="hover:text-brand transition">Terms of Use</a>
+          <a href="#accessibility" class="hover:text-brand transition">Accessibility</a>
+          <button type="button" class="hover:text-brand transition text-left">Manage Privacy Preferences</button>
+        </div>
+      </div>
+    </div>
+    <p class="max-w-7xl mx-auto px-6 md:px-12 pb-8 text-white/40 text-xs leading-relaxed">*Liquid Lifestyles is committed to year-round water safety. Adult supervision is required at all times — swim lessons reduce, but never eliminate, the risk of drowning.</p>
+  </section>
+</footer>
+
+<script>
+  // Mobile menu
+  (function () {
+    var menu = document.getElementById('mobileMenu');
+    var toggle = document.getElementById('menuToggle');
+    var close = document.getElementById('menuClose');
+    var links = menu.querySelectorAll('.mobile-link');
+    function open() { menu.classList.remove('hidden'); menu.classList.add('flex'); document.body.style.overflow = 'hidden'; toggle.setAttribute('aria-expanded', 'true'); }
+    function shut() { menu.classList.add('hidden'); menu.classList.remove('flex'); document.body.style.overflow = ''; toggle.setAttribute('aria-expanded', 'false'); }
+    toggle.addEventListener('click', open);
+    close.addEventListener('click', shut);
+    links.forEach(function (l) { l.addEventListener('click', shut); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !menu.classList.contains('hidden')) shut(); });
+  })();
+
+  // Quiz
+  (function () {
+    var form = document.getElementById('quizForm');
+    var steps = form.querySelectorAll('.quiz-step');
+    var nextBtn = document.getElementById('nextBtn');
+    var backBtn = document.getElementById('backBtn');
+    var stepLabel = document.getElementById('stepLabel');
+    var stepCount = document.getElementById('stepCount');
+    var progressFill = document.getElementById('progressFill');
+    var quizNav = document.getElementById('quizNav');
+    var resultTitle = document.getElementById('resultTitle');
+    var resultDesc = document.getElementById('resultDesc');
+    var resultLink = document.getElementById('resultLink');
+    var restartBtn = document.getElementById('restartBtn');
+
+    var current = 1;
+    var total = 3;
+
+    var RESULTS = {
+      'baby-bubbles': {
+        title: 'Baby Bubbles',
+        desc: 'A calm, parent-and-child program designed to build comfort, trust, and a positive first relationship with the water.',
+        href: 'baby-bubbles.html'
+      },
+      'liquid-bubbles': {
+        title: 'Liquid Bubbles',
+        desc: 'Our proven learn-to-swim path for kids 2.5–10. Three levels meet your child wherever they are — from first dunk to confident solo lap.',
+        href: 'liquid-bubbles.html'
+      },
+      'liquid-medals': {
+        title: 'Liquid Medals',
+        desc: 'Competitive training for swimmers 6–12. Refine all four strokes, dial in starts and turns, and start chasing real race times.',
+        href: 'liquid-medals.html'
+      },
+      'private-lessons': {
+        title: 'Private Lessons',
+        desc: 'One-on-one coaching tailored to your goals, your pace, and your schedule. Available for kids and adults.',
+        href: 'private-lessons.html'
+      },
+      'adult-programs': {
+        title: 'Adult Programs',
+        desc: 'Five-week courses for adults — beginner to elite. Conquer fear, learn the four strokes, or sharpen your freestyle.',
+        href: 'adult-programs.html'
+      }
+    };
+
+    function decide(answers) {
+      var a = answers.age, e = answers.experience, g = answers.goal;
+      if (g === 'personal') return 'private-lessons';
+      if (a === 'baby') return 'baby-bubbles';
+      if (a === 'adult') return 'adult-programs';
+      if (a === 'child-young') return 'liquid-bubbles';
+      if (a === 'child-older') {
+        if (e === 'competitive' || g === 'refine') return 'liquid-medals';
+        return 'liquid-bubbles';
+      }
+      return 'liquid-bubbles';
+    }
+
+    function showStep(n) {
+      steps.forEach(function (s) { s.classList.remove('active'); });
+      if (n === 'result') {
+        form.querySelector('[data-step="result"]').classList.add('active');
+        quizNav.style.display = 'none';
+      } else {
+        form.querySelector('[data-step="' + n + '"]').classList.add('active');
+        quizNav.style.display = '';
+        stepLabel.textContent = 'Step ' + n + ' of ' + total;
+        var pct = Math.round((n / total) * 100);
+        stepCount.textContent = pct + '%';
+        progressFill.style.width = pct + '%';
+        backBtn.disabled = (n === 1);
+        backBtn.style.opacity = (n === 1) ? '.35' : '';
+        backBtn.style.pointerEvents = (n === 1) ? 'none' : '';
+        nextBtn.textContent = (n === total) ? 'See my class ' : 'Next ';
+        // re-add the SVG inside button
+        nextBtn.innerHTML = (n === total
+          ? 'See my class <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>'
+          : 'Next <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>');
+        updateNextState();
+      }
+    }
+
+    function updateNextState() {
+      var step = form.querySelector('.quiz-step.active');
+      var name = step.querySelector('input[type="radio"]').name;
+      var picked = form.querySelector('input[name="' + name + '"]:checked');
+      nextBtn.disabled = !picked;
+    }
+
+    form.addEventListener('change', function (e) {
+      if (e.target.matches('input[type="radio"]')) updateNextState();
+    });
+
+    nextBtn.addEventListener('click', function () {
+      if (nextBtn.disabled) return;
+      if (current < total) {
+        current++;
+        showStep(current);
+      } else {
+        // submit
+        var answers = {
+          age: (form.querySelector('input[name="age"]:checked') || {}).value,
+          experience: (form.querySelector('input[name="experience"]:checked') || {}).value,
+          goal: (form.querySelector('input[name="goal"]:checked') || {}).value
+        };
+        var key = decide(answers);
+        var result = RESULTS[key];
+        resultTitle.textContent = result.title;
+        resultDesc.textContent = result.desc;
+        resultLink.setAttribute('href', result.href);
+        showStep('result');
+      }
+    });
+
+    backBtn.addEventListener('click', function () {
+      if (backBtn.disabled) return;
+      if (current > 1) {
+        current--;
+        showStep(current);
+      }
+    });
+
+    restartBtn.addEventListener('click', function () {
+      form.reset();
+      current = 1;
+      showStep(1);
+    });
+
+    // Auto-advance on radio click for friendlier flow
+    form.addEventListener('click', function (e) {
+      var label = e.target.closest('label.opt');
+      if (!label) return;
+      // give the input a tick to update, then enable Next
+      setTimeout(updateNextState, 0);
+    });
+  })();
+</script>
+
+</body>
+</html>

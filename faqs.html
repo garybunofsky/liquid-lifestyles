@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FAQs — Liquid Lifestyles</title>
+<style>
+  @font-face {
+    font-family: 'GT Walsheim Pro';
+    src: url('fonts/GTWalsheimProRegular/GTWalsheimPro-Regular.woff2') format('woff2'),
+         url('fonts/GTWalsheimProRegular/GTWalsheimPro-Regular.woff') format('woff'),
+         url('fonts/GTWalsheimProRegular/GTWalsheimPro-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'GT Walsheim Pro';
+    src: url('fonts/GTWalsheimProUltraBold/GT Walsheim Pro Ultra Bold.woff2') format('woff2'),
+         url('fonts/GTWalsheimProUltraBold/GT Walsheim Pro Ultra Bold.woff') format('woff'),
+         url('fonts/GTWalsheimProUltraBold/GT Walsheim Pro Ultra Bold.ttf') format('truetype'),
+         url('fonts/GTWalsheimProUltraBold/GT Walsheim Pro Ultra Bold.eot');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+  }
+  body {
+    font-family: 'GT Walsheim Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  }
+  h1, h2, h3, h4, .headline {
+    font-family: 'GT Walsheim Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    font-weight: 800;
+  }
+
+  /* Accordion */
+  .faq-item {
+    border-top: 3px solid #023349;
+  }
+  .faq-list > .faq-item:last-child {
+    border-bottom: 3px solid #023349;
+  }
+  .faq-trigger {
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: 0;
+    padding: 28px 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    color: #023349;
+    font-family: inherit;
+  }
+  .faq-trigger:focus-visible {
+    outline: 3px solid #023349;
+    outline-offset: 4px;
+  }
+  .faq-q {
+    font-family: 'GT Walsheim Pro', sans-serif;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 0.01em;
+    line-height: 1.05;
+    font-size: clamp(1.25rem, 2.4vw, 2rem);
+  }
+  .faq-icon {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    border-radius: 9999px;
+    background: #023349;
+    color: #0DC7F3;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform .25s ease;
+  }
+  .faq-icon svg { display: block; }
+  .faq-item.is-open .faq-icon {
+    transform: rotate(45deg);
+  }
+  .faq-answer {
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height .35s ease;
+  }
+  .faq-answer-inner {
+    padding: 0 0 36px 0;
+    font-size: clamp(1.25rem, 1.8vw, 1.625rem);
+    line-height: 1.5;
+    color: #023349;
+    max-width: 60ch;
+  }
+  .faq-answer-inner a {
+    text-decoration: underline;
+    font-weight: 700;
+  }
+  .faq-answer-inner ul {
+    margin-top: 8px;
+    padding-left: 24px;
+    list-style: disc;
+  }
+  .faq-answer-inner ul li {
+    margin: 4px 0;
+  }
+
+  /* Tabs */
+  .tab-btn {
+    font-family: 'GT Walsheim Pro', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 800;
+    background: transparent;
+    border: 3px solid #023349;
+    color: #023349;
+    padding: 14px 26px;
+    border-radius: 9999px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background .15s ease, color .15s ease;
+  }
+  .tab-btn[aria-selected="true"] {
+    background: #023349;
+    color: #0DC7F3;
+  }
+  .tab-btn:hover:not([aria-selected="true"]) {
+    background: rgba(2, 51, 73, 0.08);
+  }
+  @media (min-width: 768px) {
+    .tab-btn { font-size: 16px; padding: 16px 32px; }
+  }
+</style>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: '#0DC7F3',
+          ink: '#023349',
+        },
+        fontFamily: {
+          sans: ['"GT Walsheim Pro"', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Helvetica', 'Arial', 'sans-serif'],
+        },
+      },
+    },
+  };
+</script>
+</head>
+<body class="font-sans antialiased text-ink" style="background-color:#0DC7F3;">
+
+<nav class="relative z-30 flex items-center justify-between px-6 md:px-12 py-5 bg-black">
+  <a href="index.html" class="block">
+    <img src="img/horizontal-Logo-White-Watermark.webp" alt="Liquid Lifestyles" class="h-10 md:h-12 w-auto" />
+  </a>
+  <ul class="hidden md:flex items-center gap-10 list-none">
+    <li><a href="index.html#swim-lessons" class="text-white text-base lg:text-lg font-extrabold uppercase tracking-wide hover:text-brand transition">Swim Lessons</a></li>
+    <li><a href="index.html#programs" class="text-white text-base lg:text-lg font-extrabold uppercase tracking-wide hover:text-brand transition">Programs</a></li>
+    <li><a href="index.html#about" class="text-white text-base lg:text-lg font-extrabold uppercase tracking-wide hover:text-brand transition">About</a></li>
+    <li><a href="faqs.html" class="text-brand text-base lg:text-lg font-extrabold uppercase tracking-wide transition">FAQs</a></li>
+    <li><a href="locations.html" class="text-white text-base lg:text-lg font-extrabold uppercase tracking-wide hover:text-brand transition">Locations</a></li>
+  </ul>
+  <button id="menuToggle" class="md:hidden text-white p-2 -mr-2" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="3" y1="6" x2="21" y2="6"/>
+      <line x1="3" y1="12" x2="21" y2="12"/>
+      <line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+  </button>
+</nav>
+
+<div id="mobileMenu" class="fixed inset-0 z-50 bg-[#0a2840] md:hidden hidden flex-col" role="dialog" aria-modal="true" aria-label="Site navigation">
+  <div class="flex items-center justify-between px-6 py-5 border-b border-white/10">
+    <a href="index.html" class="block">
+      <img src="img/horizontal-Logo-White-Watermark.webp" alt="Liquid Lifestyles" class="h-10 w-auto" />
+    </a>
+    <button id="menuClose" class="text-white p-2 -mr-2" aria-label="Close menu">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"/>
+        <line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+  <ul class="flex-1 flex flex-col items-center justify-center gap-8 list-none px-6">
+    <li><a href="index.html#swim-lessons" class="mobile-link text-white text-3xl font-extrabold uppercase tracking-tight hover:text-brand transition">Swim Lessons</a></li>
+    <li><a href="index.html#programs" class="mobile-link text-white text-3xl font-extrabold uppercase tracking-tight hover:text-brand transition">Programs</a></li>
+    <li><a href="index.html#about" class="mobile-link text-white text-3xl font-extrabold uppercase tracking-tight hover:text-brand transition">About</a></li>
+    <li><a href="faqs.html" class="mobile-link text-brand text-3xl font-extrabold uppercase tracking-tight transition">FAQs</a></li>
+    <li><a href="locations.html" class="mobile-link text-white text-3xl font-extrabold uppercase tracking-tight hover:text-brand transition">Locations</a></li>
+  </ul>
+</div>
+
+<header class="px-6 md:px-12 pt-16 md:pt-28 pb-10 md:pb-16">
+  <div class="max-w-6xl mx-auto">
+    <p class="text-sm md:text-base font-extrabold uppercase tracking-[0.25em] mb-6">Help &amp; Answers</p>
+    <h1 class="text-ink leading-[0.85] tracking-tight font-extrabold" style="font-size:clamp(4rem, 14vw, 13rem);">FAQs</h1>
+  </div>
+</header>
+
+<section class="px-6 md:px-12 pb-24 md:pb-32">
+  <div class="max-w-6xl mx-auto">
+
+    <div role="tablist" aria-label="FAQ topics" class="flex flex-wrap gap-3 md:gap-4 mb-10 md:mb-16">
+      <button class="tab-btn" role="tab" aria-selected="true" aria-controls="panel-swim" id="tab-swim" data-target="panel-swim">Swim Lessons</button>
+      <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-schedule" id="tab-schedule" data-target="panel-schedule">Scheduling</button>
+      <button class="tab-btn" role="tab" aria-selected="false" aria-controls="panel-tuition" id="tab-tuition" data-target="panel-tuition">Tuition &amp; Payments</button>
+    </div>
+
+    <!-- Swim Lessons -->
+    <div id="panel-swim" role="tabpanel" aria-labelledby="tab-swim" class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">What age can my child start swim lessons?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          <p>Babies can start as young as 4 months. Older kids can join anytime — there's always time to learn.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">When can I enroll?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          <p>Year-round. Enrollment is always open.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">How long are lessons?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          <p>30 minutes — long enough to learn, short enough to stay focused.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">What training do your instructors get?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          <p>40+ hours of in-classroom and in-water training, written and in-water exams, plus monthly ongoing sessions.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">Will my child have the same instructor every time?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          <p>Usually, yes. If we need to swap, every coach has access to your swimmer's progress notes.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">How many kids per class?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          <p>Four kids per instructor, max.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">How many days a week should we come?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          <p>2–3 lessons a week works best. Skills build on each other and stick when practiced often.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">Will my child go underwater?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          <p>Yes. Breath control is one of the first things we teach — gently. Most kids love it after a few lessons.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">How fast will my child learn to swim?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          <p>It depends on age, frequency, and confidence. Your coach will share progress after every lesson, and you can track it in the app.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">What if my child cries during a lesson?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          <p>Totally normal. New space, new faces, new rules. Most kids settle within a few lessons. Your calm encouragement helps a lot.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">What if my child is more or less advanced than the class?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          <p>Our coaches teach to your kid's level, not the average. Every swimmer progresses on their own track.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">What should we bring?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          <p>Swimsuit, towel, and a swim diaper if needed. Goggles are optional.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">Can I bring my child if they're sick?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          <p>Please reschedule if your kid has any of these in the last 24 hours:</p>
+          <ul>
+            <li>Fever of 100°F or higher</li>
+            <li>Green mucus</li>
+            <li>Severe cough or sore throat</li>
+            <li>Skin rash</li>
+            <li>Vomiting or diarrhea</li>
+          </ul>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">How warm is the pool?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          <p>90°F. Cozy enough for the tiniest swimmers.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">Where can my child rinse off after?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          <p>Showers in the pool room. A real wash at home will finish the job.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">Can I take photos during lessons?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          <p>Yes — from the parent viewing area.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">If we take a winter break, will they forget everything?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          <p>Some skill regression is normal after a long break. Year-round lessons keep what they've learned and build new skills faster.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">Do I need to get in the water?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          <p>For our youngest levels, yes. You don't need to swim or go underwater — pools are 3.5 to 5 ft deep so most adults can stand comfortably.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">Will ESL make it harder for my child to learn?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          <p>No. We teach with lots of visual demos paired with verbal cues, so kids learning English pick it up alongside their classmates.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">¿Hablas Español?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          <p>Many of our schools have Spanish-speaking team members. Llama con anticipación para confirmar — call ahead to confirm what's available at your local school.</p>
+        </div></div>
+      </div>
+
+    </div>
+
+    <!-- Scheduling -->
+    <div id="panel-schedule" role="tabpanel" aria-labelledby="tab-schedule" class="faq-list" hidden>
+
+      <div class="faq-item">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">How do I schedule lessons?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          <p>Use the Liquid Lifestyles app, register on our website, give us a call, or stop by.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">What if my child misses a lesson?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          <p>Cancel in the app and book a make-up. Easy.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">What's your make-up policy?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          <p>Book make-ups up to 7 days in advance. Missed make-ups can't be rescheduled, and they don't count toward monthly tuition.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">What if we need a break?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          <p>Submit a 30-day written notice. Billing and enrollment stop 30 days from when we receive it.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">What happens when my child levels up?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          <p>The instructor lets you know they're ready, and the front desk gets them set up in the next class.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">How do I download the app?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          <p>Search "Liquid Lifestyles" on the App Store or Google Play.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">How do I withdraw?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          <p>30-day written notice. You can submit it anytime in the month — classes end 30 days from receipt.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">How do I reschedule?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          <p>Right from the app. Quick and easy.</p>
+        </div></div>
+      </div>
+
+    </div>
+
+    <!-- Tuition -->
+    <div id="panel-tuition" role="tabpanel" aria-labelledby="tab-tuition" class="faq-list" hidden>
+
+      <div class="faq-item">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">How much do classes cost?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          <p>Pricing varies by location and how many lessons per week. Call us or check your local page for details.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">How do I pay?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          <p>First month at enrollment. Card stays on file for monthly auto-pay. You can update billing anytime in the app.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">How much is the registration fee?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          <p>The annual registration fee varies by location. Check our website or call your local school.</p>
+        </div></div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-trigger" aria-expanded="false">
+          <span class="faq-q">Are tuition and fees refundable?</span>
+          <span class="faq-icon" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">
+          <p>No. Tuition and registration fees are non-refundable, used or unused.</p>
+        </div></div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<section class="bg-ink text-white py-16 md:py-24 px-6 md:px-12">
+  <div class="max-w-4xl mx-auto text-center">
+    <h2 class="text-4xl md:text-6xl font-extrabold leading-tight mb-5">Still have questions?</h2>
+    <p class="text-white/80 text-lg md:text-xl mb-8 max-w-xl mx-auto normal-case">
+      Our local team would love to help. Find your nearest school and we'll take it from there.
+    </p>
+    <a href="locations.html" class="inline-block bg-brand hover:bg-white text-black font-extrabold uppercase tracking-wide px-8 py-4 rounded-full transition">
+      Find a Location
+    </a>
+  </div>
+</section>
+
+<footer class="bg-black text-white border-t border-white/10">
+
+  <section class="border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 py-14 md:py-20 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+      <div>
+        <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight mb-4">Stay in the swim of things</h2>
+        <p class="text-white/70 text-base md:text-lg leading-relaxed max-w-lg">
+          Get water-safety tips, class openings, and seasonal promos in your inbox. No spam — just the good stuff for swim families.
+        </p>
+      </div>
+
+      <div class="w-full">
+        <form class="flex items-stretch bg-white rounded-full p-1.5 shadow-2xl">
+          <input
+            type="email"
+            name="email"
+            autocomplete="email"
+            placeholder="Enter your email"
+            aria-label="Email address"
+            class="flex-1 min-w-0 px-5 py-3 text-base text-black bg-transparent rounded-full outline-none placeholder:text-black/50"
+          />
+          <button type="submit" aria-label="Subscribe" class="flex items-center justify-center bg-brand hover:bg-brand/90 text-black w-12 h-12 rounded-full transition flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/>
+              <polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </button>
+        </form>
+
+        <p class="text-white/50 text-xs mt-3">
+          Protected by reCAPTCHA. Your details stay yours — see our
+          <a href="#privacy" class="underline hover:text-brand">Privacy Policy</a>.
+        </p>
+
+        <div class="flex items-center gap-5 mt-6">
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-white/80 hover:text-brand transition">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+          </a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="text-white/80 hover:text-brand transition">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+            </svg>
+          </a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="YouTube" class="text-white/80 hover:text-brand transition">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/>
+              <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/>
+            </svg>
+          </a>
+          <a href="#" target="_blank" rel="noopener noreferrer" aria-label="TikTok" class="text-white/80 hover:text-brand transition">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43V8.94a8.16 8.16 0 0 0 4.77 1.52V7a4.84 4.84 0 0 1-1.84-.31z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 py-14 md:py-16 grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10 lg:gap-16">
+      <div>
+        <a href="index.html" class="inline-block">
+          <img src="img/horizontal-Logo-White-Watermark.webp" alt="Liquid Lifestyles" class="h-14 w-auto" />
+        </a>
+        <h2 class="mt-5 text-2xl tracking-tight leading-tight">
+          Confident<br>
+          <span class="text-brand">Swimmers<sup class="text-base align-super">™</sup></span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-10">
+
+        <div>
+          <h3 class="text-sm font-bold uppercase tracking-wider mb-4 text-brand">Get in Touch</h3>
+          <ul class="space-y-3 list-none">
+            <li><a href="#contact" class="text-sm text-white/80 hover:text-brand transition">Contact</a></li>
+            <li><a href="locations.html" class="text-sm text-white/80 hover:text-brand transition">Find a School</a></li>
+            <li><a href="#parties" class="text-sm text-white/80 hover:text-brand transition">Pool Parties</a></li>
+            <li><a href="#careers" class="text-sm text-white/80 hover:text-brand transition">Careers</a></li>
+            <li><a href="#franchise" class="text-sm text-white/80 hover:text-brand transition">Own a Franchise</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-sm font-bold uppercase tracking-wider mb-4 text-brand">Learn More</h3>
+          <ul class="space-y-3 list-none">
+            <li><a href="index.html#about" class="text-sm text-white/80 hover:text-brand transition">About Us</a></li>
+            <li><a href="#water-safety" class="text-sm text-white/80 hover:text-brand transition">Water Safety</a></li>
+            <li><a href="#philosophy" class="text-sm text-white/80 hover:text-brand transition">Our Philosophy</a></li>
+            <li><a href="#testimonials" class="text-sm text-white/80 hover:text-brand transition">Testimonials</a></li>
+            <li><a href="#blog" class="text-sm text-white/80 hover:text-brand transition">Blog</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-sm font-bold uppercase tracking-wider mb-4 text-brand">Programs</h3>
+          <ul class="space-y-3 list-none">
+            <li><a href="index.html#swim-lessons" class="text-sm text-white/80 hover:text-brand transition">Swim Lessons</a></li>
+            <li><a href="index.html#swim-assessment" class="text-sm text-white/80 hover:text-brand transition">Swim Assessment</a></li>
+            <li><a href="#family-swim" class="text-sm text-white/80 hover:text-brand transition">Family Swim</a></li>
+            <li><a href="#clinics" class="text-sm text-white/80 hover:text-brand transition">Technique Clinics</a></li>
+            <li><a href="faqs.html" class="text-sm text-white/80 hover:text-brand transition">FAQs</a></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="max-w-7xl mx-auto px-6 md:px-12 py-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand/15 text-brand">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 20c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>
+            <path d="M2 16c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>
+            <path d="M18 6a2 2 0 1 0-4 0c0 1.5.7 2.3 2 4l-6 4"/>
+          </svg>
+        </span>
+        <span class="text-xs uppercase tracking-wider text-white/60 leading-tight">
+          Certified Water Safety Instructors —<br class="hidden sm:block">
+          U.S. Swim School Association Member
+        </span>
+      </div>
+
+      <div class="flex flex-col md:flex-row md:items-center gap-3 md:gap-6 text-xs text-white/60">
+        <span>© 2026 Liquid Lifestyles. All rights reserved.</span>
+        <div class="flex flex-wrap gap-x-5 gap-y-2">
+          <a href="#privacy" class="hover:text-brand transition">Privacy</a>
+          <a href="#terms" class="hover:text-brand transition">Terms of Use</a>
+          <a href="#accessibility" class="hover:text-brand transition">Accessibility</a>
+          <button type="button" class="hover:text-brand transition text-left">Manage Privacy Preferences</button>
+        </div>
+      </div>
+    </div>
+    <p class="max-w-7xl mx-auto px-6 md:px-12 pb-8 text-white/40 text-xs leading-relaxed">
+      *Liquid Lifestyles is committed to year-round water safety. Adult supervision is required at all times — swim lessons reduce, but never eliminate, the risk of drowning.
+    </p>
+  </section>
+
+</footer>
+
+<script>
+  // Mobile menu
+  (function () {
+    var menu = document.getElementById('mobileMenu');
+    var toggle = document.getElementById('menuToggle');
+    var close = document.getElementById('menuClose');
+    var links = menu.querySelectorAll('.mobile-link');
+
+    function open() {
+      menu.classList.remove('hidden');
+      menu.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+      toggle.setAttribute('aria-expanded', 'true');
+    }
+    function shut() {
+      menu.classList.add('hidden');
+      menu.classList.remove('flex');
+      document.body.style.overflow = '';
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+
+    toggle.addEventListener('click', open);
+    close.addEventListener('click', shut);
+    links.forEach(function (l) { l.addEventListener('click', shut); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !menu.classList.contains('hidden')) shut();
+    });
+  })();
+
+  // Tabs
+  (function () {
+    var tabs = document.querySelectorAll('.tab-btn');
+    var panels = {
+      'panel-swim': document.getElementById('panel-swim'),
+      'panel-schedule': document.getElementById('panel-schedule'),
+      'panel-tuition': document.getElementById('panel-tuition'),
+    };
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        var target = tab.getAttribute('data-target');
+        tabs.forEach(function (t) { t.setAttribute('aria-selected', t === tab ? 'true' : 'false'); });
+        Object.keys(panels).forEach(function (id) {
+          if (id === target) panels[id].removeAttribute('hidden');
+          else panels[id].setAttribute('hidden', '');
+        });
+      });
+    });
+  })();
+
+  // Accordion
+  (function () {
+    var items = document.querySelectorAll('.faq-item');
+    items.forEach(function (item) {
+      var trigger = item.querySelector('.faq-trigger');
+      var answer = item.querySelector('.faq-answer');
+      trigger.addEventListener('click', function () {
+        var isOpen = item.classList.toggle('is-open');
+        trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        if (isOpen) {
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+        } else {
+          answer.style.maxHeight = '0';
+        }
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
