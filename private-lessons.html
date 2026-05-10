@@ -4,50 +4,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Private Lessons — Liquid Lifestyles</title>
-<style>
-  @font-face {
-    font-family: 'GT Walsheim Pro';
-    src: url('fonts/GTWalsheimProRegular/GTWalsheimPro-Regular.woff2') format('woff2'),
-         url('fonts/GTWalsheimProRegular/GTWalsheimPro-Regular.woff') format('woff'),
-         url('fonts/GTWalsheimProRegular/GTWalsheimPro-Regular.ttf') format('truetype');
-    font-weight: 400; font-style: normal; font-display: swap;
-  }
-  @font-face {
-    font-family: 'GT Walsheim Pro';
-    src: url('fonts/GTWalsheimProUltraBold/GT Walsheim Pro Ultra Bold.woff2') format('woff2'),
-         url('fonts/GTWalsheimProUltraBold/GT Walsheim Pro Ultra Bold.woff') format('woff'),
-         url('fonts/GTWalsheimProUltraBold/GT Walsheim Pro Ultra Bold.ttf') format('truetype'),
-         url('fonts/GTWalsheimProUltraBold/GT Walsheim Pro Ultra Bold.eot');
-    font-weight: 800; font-style: normal; font-display: swap;
-  }
-  body { font-family: 'GT Walsheim Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; }
-  h1, h2, h3, h4, .headline { font-family: 'GT Walsheim Pro', sans-serif; text-transform: uppercase; letter-spacing: 0.01em; font-weight: 800; }
-  .pill-bright {
-    display: inline-flex; align-items: center; gap: .6rem;
-    background: #0DC7F3; color: #0a2840;
-    font-weight: 800; text-transform: uppercase; letter-spacing: .03em;
-    padding: 1rem 1.75rem; border-radius: 9999px;
-    transition: background .15s ease, color .15s ease;
-  }
-  .pill-bright:hover { background: #fff; color: #0a2840; }
-  .pill-out {
-    display: inline-flex; align-items: center; gap: .6rem;
-    border: 3px solid #0DC7F3; color: #0DC7F3;
-    font-weight: 800; text-transform: uppercase; letter-spacing: .03em;
-    padding: calc(1rem - 3px) calc(1.75rem - 3px); border-radius: 9999px;
-    transition: background .15s ease, color .15s ease;
-  }
-  .pill-out:hover { background: #0DC7F3; color: #0a2840; }
-</style>
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = { theme: { extend: {
-    colors: { brand: '#0DC7F3', ink: '#0a2840' },
-    fontFamily: { sans: ['"GT Walsheim Pro"', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Helvetica', 'Arial', 'sans-serif'] },
-  } } };
-</script>
+<link rel="stylesheet" href="css/styles.css" />
 </head>
-<body class="font-sans antialiased text-white" style="background-color:#0a2840;">
+<body data-theme="private-lessons" class="font-sans antialiased text-white" style="background-color:#0a2840;">
 
 <nav class="relative z-30 flex items-center justify-between px-6 md:px-12 py-5 bg-black">
   <a href="index.html" class="block"><img src="img/horizontal-Logo-White-Watermark.webp" alt="Liquid Lifestyles" class="h-10 md:h-12 w-auto" /></a>
@@ -138,16 +97,16 @@
   </div>
 </section>
 
-<section class="bg-brand text-ink px-6 md:px-12 py-20 md:py-28">
+<section class="bg-brand text-[#0a2840] px-6 md:px-12 py-20 md:py-28">
   <div class="max-w-5xl mx-auto">
-    <p class="text-ink/70 text-sm md:text-base font-extrabold uppercase tracking-[0.25em] mb-6">Help Us Help You</p>
+    <p class="text-[#0a2840]/70 text-sm md:text-base font-extrabold uppercase tracking-[0.25em] mb-6">Help Us Help You</p>
     <h2 class="leading-[0.95] tracking-tight font-extrabold mb-8" style="font-size:clamp(2.25rem, 6vw, 5rem);">
       Tell us what you're<br>working toward.
     </h2>
-    <p class="text-ink/85 text-lg md:text-xl normal-case leading-relaxed mb-8 max-w-3xl">
+    <p class="text-[#0a2840]/85 text-lg md:text-xl normal-case leading-relaxed mb-8 max-w-3xl">
       Before your first lesson, send our Customer Care Team a quick "About You" email. Share your goals — fear of water, technique tweaks, race prep, anything — and we'll tailor every session to fit.
     </p>
-    <a href="mailto:hello@liquidlifestyles.com" class="inline-flex items-center gap-2 bg-ink text-white font-extrabold uppercase tracking-wide px-7 py-4 rounded-full transition hover:bg-black">
+    <a href="mailto:hello@liquidlifestyles.com" class="inline-flex items-center gap-2 bg-[#0a2840] text-white font-extrabold uppercase tracking-wide px-7 py-4 rounded-full transition hover:bg-black">
       Email Customer Care
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
     </a>

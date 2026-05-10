@@ -4,66 +4,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Liquid Bubbles — Liquid Lifestyles</title>
-<style>
-  @font-face {
-    font-family: 'GT Walsheim Pro';
-    src: url('fonts/GTWalsheimProRegular/GTWalsheimPro-Regular.woff2') format('woff2'),
-         url('fonts/GTWalsheimProRegular/GTWalsheimPro-Regular.woff') format('woff'),
-         url('fonts/GTWalsheimProRegular/GTWalsheimPro-Regular.ttf') format('truetype');
-    font-weight: 400; font-style: normal; font-display: swap;
-  }
-  @font-face {
-    font-family: 'GT Walsheim Pro';
-    src: url('fonts/GTWalsheimProUltraBold/GT Walsheim Pro Ultra Bold.woff2') format('woff2'),
-         url('fonts/GTWalsheimProUltraBold/GT Walsheim Pro Ultra Bold.woff') format('woff'),
-         url('fonts/GTWalsheimProUltraBold/GT Walsheim Pro Ultra Bold.ttf') format('truetype'),
-         url('fonts/GTWalsheimProUltraBold/GT Walsheim Pro Ultra Bold.eot');
-    font-weight: 800; font-style: normal; font-display: swap;
-  }
-  body { font-family: 'GT Walsheim Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; }
-  h1, h2, h3, h4, .headline {
-    font-family: 'GT Walsheim Pro', sans-serif;
-    text-transform: uppercase;
-    letter-spacing: 0.01em;
-    font-weight: 800;
-  }
-  .level { border-top: 3px solid #023349; }
-  .level:last-of-type { border-bottom: 3px solid #023349; }
-  .pill-dark {
-    display: inline-flex; align-items: center; gap: .6rem;
-    background: #023349; color: #fff;
-    font-weight: 800; text-transform: uppercase; letter-spacing: .03em;
-    padding: 1rem 1.75rem; border-radius: 9999px;
-    transition: background .15s ease, color .15s ease;
-  }
-  .pill-dark:hover { background: #fff; color: #023349; }
-  .pill-out {
-    display: inline-flex; align-items: center; gap: .6rem;
-    border: 3px solid #023349; color: #023349;
-    font-weight: 800; text-transform: uppercase; letter-spacing: .03em;
-    padding: calc(1rem - 3px) calc(1.75rem - 3px); border-radius: 9999px;
-    transition: background .15s ease, color .15s ease;
-  }
-  .pill-out:hover { background: #023349; color: #fff; }
-  .check-list li {
-    position: relative; padding-left: 1.75rem; margin: .5rem 0;
-  }
-  .check-list li::before {
-    content: ''; position: absolute; left: 0; top: .65em;
-    width: .75rem; height: .75rem; border-radius: 9999px; background: #023349;
-  }
-</style>
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: { extend: {
-      colors: { brand: '#0DC7F3', ink: '#023349' },
-      fontFamily: { sans: ['"GT Walsheim Pro"', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Helvetica', 'Arial', 'sans-serif'] },
-    } },
-  };
-</script>
+<link rel="stylesheet" href="css/styles.css" />
 </head>
-<body class="font-sans antialiased text-white" style="background-color:#0aadd4;">
+<body data-theme="liquid-bubbles" class="font-sans antialiased text-white" style="background-color:#0aadd4;">
 
 <nav class="relative z-30 flex items-center justify-between px-6 md:px-12 py-5 bg-black">
   <a href="index.html" class="block">

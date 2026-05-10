@@ -1,0 +1,347 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================================================
+   Fonts
+   ========================================================================== */
+@font-face {
+  font-family: 'GT Walsheim Pro';
+  src: url('../fonts/GTWalsheimProRegular/GTWalsheimPro-Regular.woff2') format('woff2'),
+       url('../fonts/GTWalsheimProRegular/GTWalsheimPro-Regular.woff') format('woff'),
+       url('../fonts/GTWalsheimProRegular/GTWalsheimPro-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'GT Walsheim Pro';
+  src: url('../fonts/GTWalsheimProUltraBold/GT Walsheim Pro Ultra Bold.woff2') format('woff2'),
+       url('../fonts/GTWalsheimProUltraBold/GT Walsheim Pro Ultra Bold.woff') format('woff'),
+       url('../fonts/GTWalsheimProUltraBold/GT Walsheim Pro Ultra Bold.ttf') format('truetype'),
+       url('../fonts/GTWalsheimProUltraBold/GT Walsheim Pro Ultra Bold.eot');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+@layer base {
+  body {
+    font-family: 'GT Walsheim Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  }
+  h1, h2, h3, h4, .headline {
+    font-family: 'GT Walsheim Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    font-weight: 800;
+  }
+}
+
+/* ==========================================================================
+   Theme defaults — pages override via [data-theme="..."]
+   ========================================================================== */
+:root {
+  --pill-bg: #023349;
+  --pill-color: #fff;
+  --pill-bg-hover: #fff;
+  --pill-color-hover: #023349;
+
+  --pill-bright-bg: #0DC7F3;
+  --pill-bright-color: #023349;
+  --pill-bright-bg-hover: #fff;
+  --pill-bright-color-hover: #023349;
+
+  --pill-out-border: #023349;
+  --pill-out-color: #023349;
+  --pill-out-bg-hover: #023349;
+  --pill-out-color-hover: #fff;
+
+  --check-bullet: #023349;
+  --level-border: #023349;
+}
+
+body[data-theme="baby-bubbles"] {
+  --pill-color: #0DC7F3;
+}
+
+body[data-theme="liquid-medals"] {
+  --pill-bright-color: #024c5e;
+  --pill-bright-color-hover: #024c5e;
+  --pill-out-border: #0DC7F3;
+  --pill-out-color: #0DC7F3;
+  --pill-out-bg-hover: #0DC7F3;
+  --pill-out-color-hover: #024c5e;
+  --check-bullet: #0DC7F3;
+  --level-border: #0DC7F3;
+}
+
+body[data-theme="adult-programs"] {
+  --pill-out-border: #fff;
+  --pill-out-color: #fff;
+  --pill-out-bg-hover: #fff;
+  --pill-out-color-hover: #023349;
+  --check-bullet: #fff;
+}
+
+body[data-theme="private-lessons"] {
+  --pill-bright-color: #0a2840;
+  --pill-bright-color-hover: #0a2840;
+  --pill-out-border: #0DC7F3;
+  --pill-out-color: #0DC7F3;
+  --pill-out-bg-hover: #0DC7F3;
+  --pill-out-color-hover: #0a2840;
+}
+
+body[data-theme="find-your-class"] {
+  --pill-color-hover: #023349;
+  --pill-out-bg-hover: #023349;
+  --pill-out-color-hover: #f4d35e;
+}
+
+/* ==========================================================================
+   Buttons / pills
+   ========================================================================== */
+.pill-dark {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  background: var(--pill-bg);
+  color: var(--pill-color);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  padding: 1rem 1.75rem;
+  border-radius: 9999px;
+  transition: background .15s ease, color .15s ease;
+}
+.pill-dark:hover { background: var(--pill-bg-hover); color: var(--pill-color-hover); }
+.pill-dark[disabled] { opacity: .35; pointer-events: none; }
+
+.pill-bright {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  background: var(--pill-bright-bg);
+  color: var(--pill-bright-color);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  padding: 1rem 1.75rem;
+  border-radius: 9999px;
+  transition: background .15s ease, color .15s ease;
+}
+.pill-bright:hover { background: var(--pill-bright-bg-hover); color: var(--pill-bright-color-hover); }
+
+.pill-out {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  border: 3px solid var(--pill-out-border);
+  color: var(--pill-out-color);
+  background: transparent;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  padding: calc(1rem - 3px) calc(1.75rem - 3px);
+  border-radius: 9999px;
+  transition: background .15s ease, color .15s ease;
+}
+.pill-out:hover { background: var(--pill-out-bg-hover); color: var(--pill-out-color-hover); }
+
+/* ==========================================================================
+   Levels (class pages)
+   ========================================================================== */
+.level { border-top: 3px solid var(--level-border); }
+.level:last-of-type { border-bottom: 3px solid var(--level-border); }
+
+.check-list li {
+  position: relative;
+  padding-left: 1.75rem;
+  margin: .5rem 0;
+}
+.check-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: .65em;
+  width: .75rem;
+  height: .75rem;
+  border-radius: 9999px;
+  background: var(--check-bullet);
+}
+
+.medal-bronze { color: #cd7f32; }
+.medal-silver { color: #cfd2d4; }
+.medal-gold   { color: #ffd84d; }
+
+/* ==========================================================================
+   Reveal-on-scroll (homepage)
+   ========================================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity .9s cubic-bezier(.2, .8, .2, 1),
+              transform .9s cubic-bezier(.2, .8, .2, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+.reveal-stagger > .reveal:nth-child(1) { transition-delay: 0ms; }
+.reveal-stagger > .reveal:nth-child(2) { transition-delay: 80ms; }
+.reveal-stagger > .reveal:nth-child(3) { transition-delay: 160ms; }
+.reveal-stagger > .reveal:nth-child(4) { transition-delay: 240ms; }
+.reveal-stagger > .reveal:nth-child(5) { transition-delay: 320ms; }
+.reveal-stagger > .reveal:nth-child(6) { transition-delay: 400ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ==========================================================================
+   FAQ accordion (faqs.html)
+   ========================================================================== */
+.faq-item { border-top: 3px solid #023349; }
+.faq-list > .faq-item:last-child { border-bottom: 3px solid #023349; }
+.faq-trigger {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  padding: 28px 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  color: #023349;
+  font-family: inherit;
+}
+.faq-trigger:focus-visible { outline: 3px solid #023349; outline-offset: 4px; }
+.faq-q {
+  font-family: 'GT Walsheim Pro', sans-serif;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  line-height: 1.05;
+  font-size: clamp(1.25rem, 2.4vw, 2rem);
+}
+.faq-icon {
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  border-radius: 9999px;
+  background: #023349;
+  color: #0DC7F3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .25s ease;
+}
+.faq-icon svg { display: block; }
+.faq-item.is-open .faq-icon { transform: rotate(45deg); }
+.faq-answer {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height .35s ease;
+}
+.faq-answer-inner {
+  padding: 0 0 36px 0;
+  font-size: clamp(1.25rem, 1.8vw, 1.625rem);
+  line-height: 1.5;
+  color: #023349;
+  max-width: 60ch;
+}
+.faq-answer-inner a { text-decoration: underline; font-weight: 700; }
+.faq-answer-inner ul { margin-top: 8px; padding-left: 24px; list-style: disc; }
+.faq-answer-inner ul li { margin: 4px 0; }
+
+.tab-btn {
+  font-family: 'GT Walsheim Pro', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 800;
+  background: transparent;
+  border: 3px solid #023349;
+  color: #023349;
+  padding: 14px 26px;
+  border-radius: 9999px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background .15s ease, color .15s ease;
+}
+.tab-btn[aria-selected="true"] { background: #023349; color: #0DC7F3; }
+.tab-btn:hover:not([aria-selected="true"]) { background: rgba(2, 51, 73, 0.08); }
+@media (min-width: 768px) {
+  .tab-btn { font-size: 16px; padding: 16px 32px; }
+}
+
+/* ==========================================================================
+   Quiz (find-your-class.html)
+   ========================================================================== */
+.quiz-step { display: none; }
+.quiz-step.active { display: block; }
+
+.opt {
+  display: block;
+  cursor: pointer;
+  position: relative;
+  background: rgba(2, 51, 73, 0.06);
+  border: 3px solid rgba(2, 51, 73, 0.18);
+  border-radius: 1.25rem;
+  padding: 1.5rem 1.75rem;
+  transition: background .15s ease, border-color .15s ease, transform .15s ease;
+}
+.opt:hover {
+  background: rgba(2, 51, 73, 0.12);
+  border-color: rgba(2, 51, 73, 0.4);
+  transform: translateY(-2px);
+}
+.opt input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.opt .opt-dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 9999px;
+  border: 3px solid #023349;
+  flex-shrink: 0;
+  margin-top: 4px;
+  background: transparent;
+  transition: background .15s ease;
+}
+.opt input:checked ~ .opt-row .opt-dot {
+  background: #023349;
+  box-shadow: inset 0 0 0 4px #f4d35e;
+}
+.opt:has(input:checked) {
+  background: #023349;
+  color: #f4d35e;
+  border-color: #023349;
+}
+.opt:has(input:checked) .opt-dot {
+  border-color: #f4d35e;
+  background: #f4d35e;
+  box-shadow: inset 0 0 0 4px #023349;
+}
+.opt:has(input:checked) .opt-sub { color: rgba(244, 211, 94, 0.8); }
+.opt-sub { color: rgba(2, 51, 73, 0.65); }
+
+.progress-bar {
+  height: 6px;
+  background: rgba(2, 51, 73, 0.15);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+.progress-bar > span {
+  display: block;
+  height: 100%;
+  background: #023349;
+  border-radius: 9999px;
+  transition: width .35s ease;
+}

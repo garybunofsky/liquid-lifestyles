@@ -4,90 +4,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Find Your Class — Liquid Lifestyles</title>
-<style>
-  @font-face {
-    font-family: 'GT Walsheim Pro';
-    src: url('fonts/GTWalsheimProRegular/GTWalsheimPro-Regular.woff2') format('woff2'),
-         url('fonts/GTWalsheimProRegular/GTWalsheimPro-Regular.woff') format('woff'),
-         url('fonts/GTWalsheimProRegular/GTWalsheimPro-Regular.ttf') format('truetype');
-    font-weight: 400; font-style: normal; font-display: swap;
-  }
-  @font-face {
-    font-family: 'GT Walsheim Pro';
-    src: url('fonts/GTWalsheimProUltraBold/GT Walsheim Pro Ultra Bold.woff2') format('woff2'),
-         url('fonts/GTWalsheimProUltraBold/GT Walsheim Pro Ultra Bold.woff') format('woff'),
-         url('fonts/GTWalsheimProUltraBold/GT Walsheim Pro Ultra Bold.ttf') format('truetype'),
-         url('fonts/GTWalsheimProUltraBold/GT Walsheim Pro Ultra Bold.eot');
-    font-weight: 800; font-style: normal; font-display: swap;
-  }
-  body { font-family: 'GT Walsheim Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; }
-  h1, h2, h3, h4, .headline { font-family: 'GT Walsheim Pro', sans-serif; text-transform: uppercase; letter-spacing: 0.01em; font-weight: 800; }
-
-  /* Quiz step animation */
-  .quiz-step { display: none; }
-  .quiz-step.active { display: block; }
-
-  /* Big radio cards */
-  .opt {
-    display: block; cursor: pointer; position: relative;
-    background: rgba(2, 51, 73, 0.06);
-    border: 3px solid rgba(2, 51, 73, 0.18);
-    border-radius: 1.25rem;
-    padding: 1.5rem 1.75rem;
-    transition: background .15s ease, border-color .15s ease, transform .15s ease;
-  }
-  .opt:hover { background: rgba(2, 51, 73, 0.12); border-color: rgba(2, 51, 73, 0.4); transform: translateY(-2px); }
-  .opt input { position: absolute; opacity: 0; pointer-events: none; }
-  .opt .opt-dot {
-    width: 22px; height: 22px; border-radius: 9999px;
-    border: 3px solid #023349; flex-shrink: 0; margin-top: 4px;
-    background: transparent; transition: background .15s ease;
-  }
-  .opt input:checked ~ .opt-row .opt-dot { background: #023349; box-shadow: inset 0 0 0 4px #f4d35e; }
-  .opt:has(input:checked) {
-    background: #023349; color: #f4d35e;
-    border-color: #023349;
-  }
-  .opt:has(input:checked) .opt-dot { border-color: #f4d35e; background: #f4d35e; box-shadow: inset 0 0 0 4px #023349; }
-  .opt:has(input:checked) .opt-sub { color: rgba(244, 211, 94, 0.8); }
-  .opt-sub { color: rgba(2, 51, 73, 0.65); }
-
-  .pill-dark {
-    display: inline-flex; align-items: center; gap: .6rem;
-    background: #023349; color: #fff;
-    font-weight: 800; text-transform: uppercase; letter-spacing: .03em;
-    padding: 1rem 1.75rem; border-radius: 9999px;
-    transition: background .15s ease, color .15s ease;
-  }
-  .pill-dark:hover { background: #fff; color: #023349; }
-  .pill-dark[disabled] { opacity: .35; pointer-events: none; }
-  .pill-out {
-    display: inline-flex; align-items: center; gap: .6rem;
-    border: 3px solid #023349; color: #023349;
-    font-weight: 800; text-transform: uppercase; letter-spacing: .03em;
-    padding: calc(1rem - 3px) calc(1.75rem - 3px); border-radius: 9999px;
-    transition: background .15s ease, color .15s ease;
-    background: transparent;
-  }
-  .pill-out:hover { background: #023349; color: #f4d35e; }
-
-  .progress-bar {
-    height: 6px; background: rgba(2, 51, 73, 0.15); border-radius: 9999px; overflow: hidden;
-  }
-  .progress-bar > span {
-    display: block; height: 100%; background: #023349;
-    border-radius: 9999px; transition: width .35s ease;
-  }
-</style>
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = { theme: { extend: {
-    colors: { brand: '#0DC7F3', ink: '#023349', sun: '#f4d35e' },
-    fontFamily: { sans: ['"GT Walsheim Pro"', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Helvetica', 'Arial', 'sans-serif'] },
-  } } };
-</script>
+<link rel="stylesheet" href="css/styles.css" />
 </head>
-<body class="font-sans antialiased text-ink" style="background-color:#f4d35e;">
+<body data-theme="find-your-class" class="font-sans antialiased text-ink" style="background-color:#f4d35e;">
 
 <nav class="relative z-30 flex items-center justify-between px-6 md:px-12 py-5 bg-black">
   <a href="index.html" class="block"><img src="img/horizontal-Logo-White-Watermark.webp" alt="Liquid Lifestyles" class="h-10 md:h-12 w-auto" /></a>

@@ -1,0 +1,13 @@
+{
+  "name": "liquid-lifestyles",
+  "version": "1.0.0",
+  "description": "Liquid Lifestyles swim school marketing site",
+  "private": true,
+  "scripts": {
+    "build": "tailwindcss -i ./src/input.css -o ./css/styles.css --minify",
+    "watch": "tailwindcss -i ./src/input.css -o ./css/styles.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}
