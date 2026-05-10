@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Why Sign-Up Needs Fixing — Liquid Lifestyles</title>
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="font-sans antialiased text-ink bg-white">
+
+<nav class="relative z-30 flex items-center justify-between px-6 md:px-12 py-5 bg-black">
+  <a href="index.html" class="block">
+    <img src="img/horizontal-Logo-White-Watermark.webp" alt="Liquid Lifestyles" class="h-10 md:h-12 w-auto" />
+  </a>
+  <ul class="hidden md:flex items-center gap-10 list-none">
+    <li><a href="index.html#swim-lessons" class="text-white text-base lg:text-lg font-extrabold uppercase tracking-wide hover:text-brand transition">Swim Lessons</a></li>
+    <li><a href="index.html#programs" class="text-white text-base lg:text-lg font-extrabold uppercase tracking-wide hover:text-brand transition">Programs</a></li>
+    <li><a href="index.html#about" class="text-white text-base lg:text-lg font-extrabold uppercase tracking-wide hover:text-brand transition">About</a></li>
+    <li><a href="faqs.html" class="text-white text-base lg:text-lg font-extrabold uppercase tracking-wide hover:text-brand transition">FAQs</a></li>
+    <li><a href="locations.html" class="text-white text-base lg:text-lg font-extrabold uppercase tracking-wide hover:text-brand transition">Locations</a></li>
+  </ul>
+  <button id="menuToggle" class="md:hidden text-white p-2 -mr-2" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+  </button>
+</nav>
+
+<div id="mobileMenu" class="fixed inset-0 z-50 bg-[#0a2840] md:hidden hidden flex-col" role="dialog" aria-modal="true" aria-label="Site navigation">
+  <div class="flex items-center justify-between px-6 py-5 border-b border-white/10">
+    <a href="index.html" class="block">
+      <img src="img/horizontal-Logo-White-Watermark.webp" alt="Liquid Lifestyles" class="h-10 w-auto" />
+    </a>
+    <button id="menuClose" class="text-white p-2 -mr-2" aria-label="Close menu">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+  <ul class="flex-1 flex flex-col items-center justify-center gap-8 list-none px-6">
+    <li><a href="index.html#swim-lessons" class="mobile-link text-white text-3xl font-extrabold uppercase tracking-tight hover:text-brand transition">Swim Lessons</a></li>
+    <li><a href="index.html#programs" class="mobile-link text-white text-3xl font-extrabold uppercase tracking-tight hover:text-brand transition">Programs</a></li>
+    <li><a href="index.html#about" class="mobile-link text-white text-3xl font-extrabold uppercase tracking-tight hover:text-brand transition">About</a></li>
+    <li><a href="faqs.html" class="mobile-link text-white text-3xl font-extrabold uppercase tracking-tight hover:text-brand transition">FAQs</a></li>
+    <li><a href="locations.html" class="mobile-link text-white text-3xl font-extrabold uppercase tracking-tight hover:text-brand transition">Locations</a></li>
+  </ul>
+</div>
+
+<header class="bg-black text-white px-6 md:px-12 pt-16 md:pt-28 pb-16 md:pb-24">
+  <div class="max-w-6xl mx-auto">
+    <p class="text-xs md:text-sm font-extrabold uppercase tracking-[0.25em] text-brand mb-6">A note from a Liquid Lifestyles parent</p>
+    <h1 class="text-white leading-[0.9] tracking-tight font-extrabold mb-8" style="font-size:clamp(2.75rem, 8vw, 6rem);">
+      Signing up is harder<br>than it should be.
+    </h1>
+    <p class="text-white/80 text-xl md:text-2xl leading-snug max-w-3xl normal-case">
+      My daughter Lyla has been swimming with you for over two years. She just moved up to Level 3.<br><br>
+      I love what you do in the water. The way she's brought into the program isn't doing the work justice — and it's costing you families who never make it to a first lesson.
+    </p>
+  </div>
+</header>
+
+<section class="bg-white py-16 md:py-24 px-6 md:px-12">
+  <div class="max-w-6xl mx-auto">
+    <p class="text-xs md:text-sm font-extrabold uppercase tracking-widest text-brand mb-3">What a new parent goes through today</p>
+    <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-ink mb-12 max-w-3xl">The current path to a first lesson</h2>
+
+    <ol class="space-y-4 list-none">
+
+      <li class="grid grid-cols-[auto_1fr] gap-5 md:gap-8 items-start border border-black/10 rounded-2xl p-6 md:p-8">
+        <span class="inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full bg-black text-white font-extrabold text-lg flex-shrink-0">1</span>
+        <div>
+          <h3 class="text-xl md:text-2xl font-extrabold mb-2">Land on the site, try to figure out which class fits</h3>
+          <p class="text-ink/70 text-base md:text-lg leading-relaxed normal-case">Six programs, age overlaps, level prerequisites. Most parents can't tell the difference between Liquid Bubbles, Liquid Medals Bronze, and a private lesson — and there's no one on the site asking the right questions to point them in the right direction.</p>
+        </div>
+      </li>
+
+      <li class="grid grid-cols-[auto_1fr] gap-5 md:gap-8 items-start border border-black/10 rounded-2xl p-6 md:p-8">
+        <span class="inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full bg-black text-white font-extrabold text-lg flex-shrink-0">2</span>
+        <div>
+          <h3 class="text-xl md:text-2xl font-extrabold mb-2">Try to see what times are available</h3>
+          <p class="text-ink/70 text-base md:text-lg leading-relaxed normal-case">There's no schedule on the site. No way to see if the Tuesday 5pm slot at Westlake fits the family calendar. The only way to find out is to call.</p>
+        </div>
+      </li>
+
+      <li class="grid grid-cols-[auto_1fr] gap-5 md:gap-8 items-start border border-black/10 rounded-2xl p-6 md:p-8">
+        <span class="inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full bg-black text-white font-extrabold text-lg flex-shrink-0">3</span>
+        <div>
+          <h3 class="text-xl md:text-2xl font-extrabold mb-2">Pick up the phone</h3>
+          <p class="text-ink/70 text-base md:text-lg leading-relaxed normal-case">Front desk answers questions, recommends a class, quotes a time. The parent says "great, I'll go register on the website." The call ends.</p>
+        </div>
+      </li>
+
+      <li class="grid grid-cols-[auto_1fr] gap-5 md:gap-8 items-start border border-black/10 rounded-2xl p-6 md:p-8">
+        <span class="inline-flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full bg-black text-white font-extrabold text-lg flex-shrink-0">4</span>
+        <div>
+          <h3 class="text-xl md:text-2xl font-extrabold mb-2">The gap that loses the family</h3>
+          <p class="text-ink/70 text-base md:text-lg leading-relaxed normal-case">Hours pass. The kid has a tough day. The spouse mentions soccer is the same night. The intent that was there at 11am is gone by 8pm. They never come back to register — and you never knew they were close.</p>
+        </div>
+      </li>
+
+    </ol>
+  </div>
+</section>
+
+<section class="bg-[#0a2840] text-white py-16 md:py-24 px-6 md:px-12">
+  <div class="max-w-6xl mx-auto">
+    <p class="text-xs md:text-sm font-extrabold uppercase tracking-widest text-brand mb-3">The two roadblocks</p>
+    <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-12 max-w-3xl">Two questions every parent has — and the site can't answer either.</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-8 md:p-10">
+        <p class="text-brand font-extrabold uppercase tracking-widest text-xs mb-4">Question 1</p>
+        <h3 class="text-2xl md:text-3xl font-extrabold mb-4 leading-tight">Which class is right for my swimmer?</h3>
+        <p class="text-white/80 text-base md:text-lg leading-relaxed normal-case">Today, the answer is "read all six program pages and guess." Or call. There's no guided path that asks two questions about the swimmer and points to the right class.</p>
+      </div>
+
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-8 md:p-10">
+        <p class="text-brand font-extrabold uppercase tracking-widest text-xs mb-4">Question 2</p>
+        <h3 class="text-2xl md:text-3xl font-extrabold mb-4 leading-tight">When can we actually come in?</h3>
+        <p class="text-white/80 text-base md:text-lg leading-relaxed normal-case">There's no published schedule by location. A parent can't see "Tuesday 5pm at Westlake has two spots open" without calling. Decision-making stops at the schedule wall.</p>
+      </div>
+
+    </div>
+
+    <div class="mt-10 md:mt-14 bg-brand text-black rounded-2xl p-8 md:p-10">
+      <p class="font-extrabold uppercase tracking-widest text-xs mb-3">The cost</p>
+      <p class="text-xl md:text-2xl font-extrabold leading-snug normal-case">When the site can't answer those two questions, the parent has to call — and every call introduces a delay where the sign-up can quietly die.</p>
+    </div>
+  </div>
+</section>
+
+<section class="bg-white py-16 md:py-24 px-6 md:px-12">
+  <div class="max-w-6xl mx-auto">
+    <p class="text-xs md:text-sm font-extrabold uppercase tracking-widest text-brand mb-3">What the redesign fixes</p>
+    <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-ink mb-12 max-w-3xl">The site does the work the front desk is doing today.</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+
+      <div class="rounded-2xl p-8 md:p-10 text-ink" style="background-color:#0DC7F3;">
+        <p class="font-extrabold uppercase tracking-widest text-xs mb-4 text-ink/70">Step 1</p>
+        <h3 class="text-2xl md:text-3xl font-extrabold mb-4 leading-tight">A 2-minute quiz picks the class</h3>
+        <p class="text-ink/80 text-base md:text-lg leading-relaxed normal-case">Three questions about age, experience, and goal — then a clear recommendation. No guesswork, no comparison reading, no phone call.</p>
+      </div>
+
+      <div class="rounded-2xl p-8 md:p-10 text-white" style="background-color:#0aadd4;">
+        <p class="font-extrabold uppercase tracking-widest text-xs mb-4 text-white/80">Step 2</p>
+        <h3 class="text-2xl md:text-3xl font-extrabold mb-4 leading-tight">See real openings by location</h3>
+        <p class="text-white/90 text-base md:text-lg leading-relaxed normal-case">Pick a location, see the schedule, see what's open this week and next. The "when can we come in" question gets answered on the page.</p>
+      </div>
+
+      <div class="rounded-2xl p-8 md:p-10 text-white" style="background-color:#024c5e;">
+        <p class="font-extrabold uppercase tracking-widest text-xs mb-4 text-brand">Step 3</p>
+        <h3 class="text-2xl md:text-3xl font-extrabold mb-4 leading-tight">Book the spot before the moment passes</h3>
+        <p class="text-white/85 text-base md:text-lg leading-relaxed normal-case">Reserve and pay in the same session. The family that was ready at 11am is enrolled at 11am — not maybe-enrolled at 8pm.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="bg-black text-white py-16 md:py-24 px-6 md:px-12">
+  <div class="max-w-6xl mx-auto">
+    <p class="text-xs md:text-sm font-extrabold uppercase tracking-widest text-brand mb-3">We've built this before</p>
+    <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-8 max-w-3xl leading-tight">232 swim school websites. The same flow, working in production.</h2>
+
+    <p class="text-white/80 text-lg md:text-xl leading-relaxed max-w-3xl mb-12 normal-case">
+      My team built and maintains the websites for every Goldfish Swim School location in the country — 232 of them — including the class-finder quiz, schedule integration, online booking, and a custom Salesforce pipeline that hands every lead and registration to the franchise's CRM.
+    </p>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8">
+        <p class="text-brand text-3xl md:text-5xl font-extrabold mb-2">232</p>
+        <p class="text-white/70 text-sm md:text-base leading-snug normal-case">Goldfish Swim School locations live on our platform</p>
+      </div>
+
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8">
+        <p class="text-brand text-3xl md:text-5xl font-extrabold mb-2">1</p>
+        <p class="text-white/70 text-sm md:text-base leading-snug normal-case">Salesforce integration tracking every lead through to enrollment</p>
+      </div>
+
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8">
+        <p class="text-brand text-3xl md:text-5xl font-extrabold mb-2">iClassPro</p>
+        <p class="text-white/70 text-sm md:text-base leading-snug normal-case">Schedule and registration integration the same shape you'd need</p>
+      </div>
+
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8">
+        <p class="text-brand text-3xl md:text-5xl font-extrabold mb-2">2+ yrs</p>
+        <p class="text-white/70 text-sm md:text-base leading-snug normal-case">I've been a Liquid Lifestyles parent. I know the program is worth it.</p>
+      </div>
+
+    </div>
+
+    <div class="mt-12 md:mt-16 flex flex-wrap gap-3">
+      <a href="https://loopda.sh/deck" class="inline-flex items-center justify-center bg-brand hover:bg-brand/90 text-black font-extrabold uppercase tracking-wide px-7 py-4 rounded-full transition">
+        See our work
+        <svg class="ml-2" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+      <a href="index.html" class="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 text-white font-extrabold uppercase tracking-wide px-7 py-4 rounded-full transition">
+        See the proposed site
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-black text-white border-t border-white/10">
+  <section>
+    <div class="max-w-7xl mx-auto px-6 md:px-12 py-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-brand/15 text-brand">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 20c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>
+            <path d="M2 16c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>
+            <path d="M18 6a2 2 0 1 0-4 0c0 1.5.7 2.3 2 4l-6 4"/>
+          </svg>
+        </span>
+        <span class="text-xs uppercase tracking-wider text-white/60 leading-tight">
+          Prepared for Liquid Lifestyles<br class="hidden sm:block">
+          By Gary Bunofsky, Loopdash
+        </span>
+      </div>
+
+      <div class="flex flex-col md:flex-row md:items-center gap-3 md:gap-6 text-xs text-white/60">
+        <span>© 2026 Loopdash. All rights reserved.</span>
+      </div>
+    </div>
+  </section>
+</footer>
+
+<script>
+  (function () {
+    var menu = document.getElementById('mobileMenu');
+    var toggle = document.getElementById('menuToggle');
+    var close = document.getElementById('menuClose');
+    if (!menu || !toggle || !close) return;
+    var links = menu.querySelectorAll('.mobile-link');
+
+    function open() {
+      menu.classList.remove('hidden');
+      menu.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+      toggle.setAttribute('aria-expanded', 'true');
+    }
+    function shut() {
+      menu.classList.add('hidden');
+      menu.classList.remove('flex');
+      document.body.style.overflow = '';
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+
+    toggle.addEventListener('click', open);
+    close.addEventListener('click', shut);
+    links.forEach(function (l) { l.addEventListener('click', shut); });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !menu.classList.contains('hidden')) shut();
+    });
+  })();
+</script>
+
+</body>
+</html>
