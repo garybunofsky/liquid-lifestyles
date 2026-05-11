@@ -49,45 +49,131 @@
   </ul>
 </div>
 
-<section class="relative w-full py-16 md:py-28 px-6 md:px-12 overflow-hidden">
+<section class="relative w-full py-16 md:py-24 px-6 md:px-12 overflow-hidden">
   <video class="absolute inset-0 w-full h-full object-cover z-0" autoplay muted loop playsinline>
     <source src="img/8686025-hd_1920_1080_30fps.mp4" type="video/mp4" />
   </video>
-  <div class="absolute inset-0 bg-black/60 z-10"></div>
-  <div class="relative z-20 max-w-6xl mx-auto">
-    <h1 class="text-3xl md:text-5xl font-bold tracking-tight" style="text-shadow: 2px 2px 10px rgba(0,0,0,0.6);">
-      Find Your Local Liquid Lifestyles Swim School
+  <div class="absolute inset-0 bg-black/65 z-10"></div>
+  <div class="relative z-20 max-w-3xl mx-auto text-center">
+    <h1 class="text-3xl md:text-5xl font-bold tracking-tight mb-3" style="text-shadow: 2px 2px 10px rgba(0,0,0,0.6);">
+      Find your closest pool
     </h1>
-    <p id="zipNote" class="mt-3 text-white/85 text-base md:text-lg">
-      Enter an address or zip code to see schools nearby.
+    <p id="zipNote" class="text-white/85 text-base md:text-lg mb-8">
+      Two pools serving Greater Cleveland. Enter your zip or use your location.
     </p>
+
+    <form id="zipForm" class="w-full max-w-md mx-auto flex flex-col md:flex-row gap-3 md:gap-0 md:bg-white md:rounded-full md:p-1.5 md:shadow-2xl mb-3">
+      <input
+        type="text"
+        id="zipInput"
+        name="zip"
+        placeholder="Enter zip code"
+        inputmode="numeric"
+        pattern="[0-9]{5}"
+        maxlength="5"
+        aria-label="Zip code"
+        class="flex-1 min-w-0 px-5 py-4 text-base text-black bg-white rounded-full md:rounded-full outline-none placeholder:text-black/50"
+      />
+      <button
+        type="submit"
+        class="bg-brand hover:bg-brand/90 text-black font-semibold px-7 py-4 rounded-full transition whitespace-nowrap"
+      >
+        Find Closest
+      </button>
+    </form>
+
+    <button id="geoBtn" type="button" class="inline-flex items-center gap-2 text-white/80 hover:text-brand transition text-sm underline">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+      </svg>
+      Or use my current location
+    </button>
   </div>
 </section>
 
-<div class="w-full bg-white text-black">
-  <div id='storerocket-widget' style='width:100%;' data-storerocket-env='p' data-storerocket-id='N64Kejk8gV'>
-    <p style='text-align:center;font-size:13px;padding:10px;'>
-      Store locator is loading from StoreRocket
-      <a target='_blank' href='https://storerocket.io' style='font-size:13px;'>Store Locator App</a>..
+<section class="bg-white py-16 md:py-24 px-6 md:px-12">
+  <div class="max-w-6xl mx-auto">
+    <ul id="locationCards" class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 list-none">
+
+      <li class="location-card group relative bg-white border-2 border-black/10 rounded-2xl overflow-hidden transition" data-loc="westlake" data-lat="41.4553" data-lng="-81.9179">
+        <div class="hidden closest-badge absolute top-5 right-5 z-10 inline-flex items-center gap-2 bg-brand text-black font-extrabold uppercase tracking-widest text-xs px-3 py-1.5 rounded-full">
+          <span class="w-2 h-2 rounded-full bg-black"></span>
+          Closest to you
+        </div>
+        <div class="aspect-[16/9] bg-cover bg-center" style="background-image:url('img/feature-1.jpg');"></div>
+        <div class="p-8 md:p-10">
+          <p class="text-xs font-extrabold uppercase tracking-widest text-brand mb-2">Westside</p>
+          <h2 class="text-3xl md:text-4xl font-extrabold text-ink mb-3">Westlake</h2>
+          <p class="distance-note hidden text-ink/60 text-sm font-semibold mb-4"></p>
+          <p class="text-ink/70 text-base md:text-lg leading-relaxed normal-case mb-6">5 minutes off I-90. Serving Bay Village, Rocky River, Avon, North Olmsted, and Lakewood families.</p>
+
+          <div class="grid grid-cols-2 gap-2 mb-6 text-sm">
+            <a href="tel:+14405177946" class="inline-flex items-center gap-2 text-ink/75 hover:text-brand transition">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+              440-517-SWIM
+            </a>
+            <a href="https://maps.google.com/?q=Liquid+Lifestyles+Westlake+OH" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-ink/75 hover:text-brand transition">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+              </svg>
+              Get directions
+            </a>
+          </div>
+
+          <a href="https://portal.iclasspro.com/liquid/classes?location=westlake" class="inline-flex w-full items-center justify-center bg-black hover:bg-ink/90 text-white font-extrabold uppercase tracking-wide px-6 py-4 rounded-full transition">
+            Register at Westlake
+            <svg class="ml-2" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+        </div>
+      </li>
+
+      <li class="location-card group relative bg-white border-2 border-black/10 rounded-2xl overflow-hidden transition" data-loc="north-royalton" data-lat="41.3142" data-lng="-81.7250">
+        <div class="hidden closest-badge absolute top-5 right-5 z-10 inline-flex items-center gap-2 bg-brand text-black font-extrabold uppercase tracking-widest text-xs px-3 py-1.5 rounded-full">
+          <span class="w-2 h-2 rounded-full bg-black"></span>
+          Closest to you
+        </div>
+        <div class="aspect-[16/9] bg-cover bg-center" style="background-image:url('img/feature-2.jpg');"></div>
+        <div class="p-8 md:p-10">
+          <p class="text-xs font-extrabold uppercase tracking-widest text-brand mb-2">Southside</p>
+          <h2 class="text-3xl md:text-4xl font-extrabold text-ink mb-3">North Royalton</h2>
+          <p class="distance-note hidden text-ink/60 text-sm font-semibold mb-4"></p>
+          <p class="text-ink/70 text-base md:text-lg leading-relaxed normal-case mb-6">Just off I-77. Serving Brecksville, Broadview Heights, Parma, Strongsville, and Medina families.</p>
+
+          <div class="grid grid-cols-2 gap-2 mb-6 text-sm">
+            <a href="tel:+14405177946" class="inline-flex items-center gap-2 text-ink/75 hover:text-brand transition">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+              440-517-SWIM
+            </a>
+            <a href="https://maps.google.com/?q=Liquid+Lifestyles+North+Royalton+OH" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-ink/75 hover:text-brand transition">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+              </svg>
+              Get directions
+            </a>
+          </div>
+
+          <a href="https://portal.iclasspro.com/liquid/classes?location=north-royalton" class="inline-flex w-full items-center justify-center bg-black hover:bg-ink/90 text-white font-extrabold uppercase tracking-wide px-6 py-4 rounded-full transition">
+            Register at North Royalton
+            <svg class="ml-2" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </a>
+        </div>
+      </li>
+
+    </ul>
+
+    <p class="mt-10 text-center text-ink/60 text-sm">
+      Not sure which class? <a href="find-your-class.html" class="text-brand font-semibold hover:underline">Take the 2-minute quiz</a> first.
     </p>
   </div>
-  <script>
-    (function () {
-      var a = document.createElement('script');
-      a.type = 'text/javascript';
-      a.async = !0;
-      a.src = 'https://cdn.storerocket.io/js/widget-mb.js';
-      var b = document.getElementsByTagName('script')[0];
-      b.parentNode.insertBefore(a, b);
-    }());
-  </script>
-</div>
-
-<div class="bg-black text-center py-10 px-6">
-  <a href="index.html" class="inline-block bg-brand hover:bg-brand/90 text-black font-semibold px-7 py-3 rounded-full transition">
-    Search Another Zip
-  </a>
-</div>
+</section>
 
 <footer class="bg-black text-white border-t border-white/10">
 
@@ -237,12 +323,111 @@
 </footer>
 
 <script>
-  var params = new URLSearchParams(window.location.search);
-  var zip = params.get('zip');
-  if (zip && /^\d{5}$/.test(zip)) {
-    document.getElementById('zipNote').textContent = 'Showing results for ' + zip;
+  // Greater Cleveland zip code → approximate coordinates. Replace with a geocoding
+  // API for production coverage outside this region.
+  var ZIP_COORDS = {
+    '44011':[41.452,-82.035],'44012':[41.510,-82.029],'44017':[41.408,-81.871],
+    '44039':[41.376,-82.014],'44070':[41.416,-81.917],'44102':[41.481,-81.741],
+    '44107':[41.484,-81.799],'44109':[41.459,-81.700],'44111':[41.470,-81.776],
+    '44113':[41.485,-81.703],'44116':[41.475,-81.857],'44126':[41.443,-81.851],
+    '44129':[41.401,-81.730],'44130':[41.376,-81.737],'44133':[41.313,-81.725],
+    '44134':[41.394,-81.741],'44135':[41.435,-81.815],'44136':[41.314,-81.823],
+    '44138':[41.376,-81.929],'44140':[41.487,-81.927],'44141':[41.318,-81.625],
+    '44144':[41.442,-81.708],'44145':[41.456,-81.918],'44147':[41.337,-81.687],
+    '44149':[41.318,-81.831],'44212':[41.241,-81.834]
+  };
+
+  var LOCATIONS = [
+    { id:'westlake', name:'Westlake', lat:41.4553, lng:-81.9179 },
+    { id:'north-royalton', name:'North Royalton', lat:41.3142, lng:-81.7250 }
+  ];
+
+  function distanceMiles(lat1, lon1, lat2, lon2) {
+    var R = 3958.8;
+    var dLat = (lat2 - lat1) * Math.PI / 180;
+    var dLon = (lon2 - lon1) * Math.PI / 180;
+    var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+            Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) *
+            Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    return R * 2 * Math.asin(Math.sqrt(a));
   }
 
+  function highlightClosest(lat, lng, sourceLabel) {
+    var cards = document.querySelectorAll('.location-card');
+    var distances = [];
+    cards.forEach(function (card) {
+      var d = distanceMiles(lat, lng, parseFloat(card.dataset.lat), parseFloat(card.dataset.lng));
+      distances.push({ card: card, distance: d });
+    });
+    distances.sort(function (a, b) { return a.distance - b.distance; });
+
+    distances.forEach(function (entry, i) {
+      var badge = entry.card.querySelector('.closest-badge');
+      var note = entry.card.querySelector('.distance-note');
+      var miles = entry.distance.toFixed(1);
+      note.textContent = miles + ' miles from ' + sourceLabel;
+      note.classList.remove('hidden');
+      if (i === 0) {
+        badge.classList.remove('hidden');
+        entry.card.classList.add('border-brand','shadow-2xl','-translate-y-1');
+        entry.card.classList.remove('border-black/10');
+      } else {
+        badge.classList.add('hidden');
+        entry.card.classList.remove('border-brand','shadow-2xl','-translate-y-1');
+        entry.card.classList.add('border-black/10');
+      }
+    });
+
+    // Reorder cards so closest appears first
+    var list = document.getElementById('locationCards');
+    distances.forEach(function (entry) { list.appendChild(entry.card); });
+  }
+
+  function resolveZip(zip) {
+    var coords = ZIP_COORDS[zip];
+    if (coords) {
+      highlightClosest(coords[0], coords[1], zip);
+      document.getElementById('zipNote').textContent = 'Showing pools nearest to ' + zip + '.';
+    } else {
+      document.getElementById('zipNote').textContent = "We couldn't match that zip — both pools serve Greater Cleveland.";
+    }
+  }
+
+  // Handle initial zip from URL (e.g. arriving from index.html)
+  var params = new URLSearchParams(window.location.search);
+  var initialZip = params.get('zip');
+  if (initialZip && /^\d{5}$/.test(initialZip)) {
+    document.getElementById('zipInput').value = initialZip;
+    resolveZip(initialZip);
+  }
+
+  // Zip form
+  document.getElementById('zipForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var zip = document.getElementById('zipInput').value.trim();
+    if (!/^\d{5}$/.test(zip)) {
+      document.getElementById('zipNote').textContent = 'Please enter a valid 5-digit zip.';
+      return;
+    }
+    resolveZip(zip);
+  });
+
+  // Geolocation opt-in
+  document.getElementById('geoBtn').addEventListener('click', function () {
+    if (!navigator.geolocation) {
+      document.getElementById('zipNote').textContent = 'Geolocation not available — please enter a zip.';
+      return;
+    }
+    document.getElementById('zipNote').textContent = 'Locating…';
+    navigator.geolocation.getCurrentPosition(function (pos) {
+      highlightClosest(pos.coords.latitude, pos.coords.longitude, 'your location');
+      document.getElementById('zipNote').textContent = 'Showing pools nearest to your location.';
+    }, function () {
+      document.getElementById('zipNote').textContent = 'Location access denied — please enter a zip instead.';
+    });
+  });
+
+  // Mobile menu
   (function () {
     var menu = document.getElementById('mobileMenu');
     var toggle = document.getElementById('menuToggle');
