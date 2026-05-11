@@ -246,6 +246,177 @@
   </div>
 </section>
 
+<section class="bg-[#fff8ef] py-16 md:py-24 px-6 md:px-12">
+  <div class="max-w-7xl mx-auto">
+
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10 md:mb-14">
+      <div>
+        <div class="flex items-center gap-2 mb-3" aria-label="4.9 stars on Google">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#0DC7F3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#0DC7F3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#0DC7F3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#0DC7F3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#0DC7F3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <span class="text-xs md:text-sm font-extrabold uppercase tracking-widest text-ink/60 ml-2">4.9 on Google</span>
+        </div>
+        <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-ink">What families are saying</h2>
+      </div>
+
+      <div class="hidden md:flex items-center gap-3">
+        <button id="reviewsPrev" type="button" aria-label="Previous reviews" class="w-12 h-12 rounded-full bg-ink/10 hover:bg-ink/20 text-ink flex items-center justify-center transition disabled:opacity-30 disabled:cursor-not-allowed">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
+          </svg>
+        </button>
+        <button id="reviewsNext" type="button" aria-label="Next reviews" class="w-12 h-12 rounded-full bg-ink text-white hover:bg-ink/90 flex items-center justify-center transition disabled:opacity-30 disabled:cursor-not-allowed">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!--
+      REVIEWS PLACEHOLDER — swap these six entries with real 5-star Google reviews.
+      Each card needs: 5 stars (kept), quote text, "First Name + Last Initial.", and "Community, OH".
+    -->
+    <ul id="reviewsTrack" class="flex gap-5 md:gap-6 overflow-x-auto snap-x snap-mandatory pb-4 -mx-6 md:-mx-12 px-6 md:px-12 list-none scrollbar-hide scroll-smooth">
+
+      <li class="snap-start flex-shrink-0 w-[88%] sm:w-[60%] md:w-[42%] lg:w-[32%]">
+        <article class="h-full bg-white rounded-2xl p-7 md:p-8 shadow-sm border border-black/5 flex flex-col">
+          <div class="flex items-center gap-1 mb-5" aria-label="5 star rating">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#0DC7F3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#0DC7F3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#0DC7F3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#0DC7F3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#0DC7F3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="text-ink text-lg md:text-xl leading-snug font-extrabold mb-6 normal-case flex-1">"My daughter went from terrified of water to swimming across the pool in three months. The instructors are unreal with anxious kids."</p>
+          <div class="flex items-center justify-between gap-3 mt-auto pt-5 border-t border-black/5">
+            <div>
+              <p class="text-ink font-bold text-sm">Sarah M.</p>
+              <p class="text-ink/55 text-xs">Bay Village, OH</p>
+            </div>
+            <span class="text-ink/40 text-xs font-semibold uppercase tracking-wider">Google</span>
+          </div>
+        </article>
+      </li>
+
+      <li class="snap-start flex-shrink-0 w-[88%] sm:w-[60%] md:w-[42%] lg:w-[32%]">
+        <article class="h-full bg-white rounded-2xl p-7 md:p-8 shadow-sm border border-black/5 flex flex-col">
+          <div class="flex items-center gap-1 mb-5" aria-label="5 star rating">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#0DC7F3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#0DC7F3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#0DC7F3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#0DC7F3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#0DC7F3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="text-ink text-lg md:text-xl leading-snug font-extrabold mb-6 normal-case flex-1">"Best swim school in Cleveland. Our two boys have been here three years and the small class sizes make all the difference."</p>
+          <div class="flex items-center justify-between gap-3 mt-auto pt-5 border-t border-black/5">
+            <div>
+              <p class="text-ink font-bold text-sm">David K.</p>
+              <p class="text-ink/55 text-xs">Rocky River, OH</p>
+            </div>
+            <span class="text-ink/40 text-xs font-semibold uppercase tracking-wider">Google</span>
+          </div>
+        </article>
+      </li>
+
+      <li class="snap-start flex-shrink-0 w-[88%] sm:w-[60%] md:w-[42%] lg:w-[32%]">
+        <article class="h-full bg-white rounded-2xl p-7 md:p-8 shadow-sm border border-black/5 flex flex-col">
+          <div class="flex items-center gap-1 mb-5" aria-label="5 star rating">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#0DC7F3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#0DC7F3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#0DC7F3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#0DC7F3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#0DC7F3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="text-ink text-lg md:text-xl leading-snug font-extrabold mb-6 normal-case flex-1">"The 90° water is a game changer for our toddler. He cried at every other pool — at Liquid Lifestyles he begs to go back."</p>
+          <div class="flex items-center justify-between gap-3 mt-auto pt-5 border-t border-black/5">
+            <div>
+              <p class="text-ink font-bold text-sm">Jenna T.</p>
+              <p class="text-ink/55 text-xs">Westlake, OH</p>
+            </div>
+            <span class="text-ink/40 text-xs font-semibold uppercase tracking-wider">Google</span>
+          </div>
+        </article>
+      </li>
+
+      <li class="snap-start flex-shrink-0 w-[88%] sm:w-[60%] md:w-[42%] lg:w-[32%]">
+        <article class="h-full bg-white rounded-2xl p-7 md:p-8 shadow-sm border border-black/5 flex flex-col">
+          <div class="flex items-center gap-1 mb-5" aria-label="5 star rating">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#0DC7F3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#0DC7F3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#0DC7F3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#0DC7F3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#0DC7F3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="text-ink text-lg md:text-xl leading-snug font-extrabold mb-6 normal-case flex-1">"Liquid Medals turned our daughter into a competitive swimmer. The Bronze-to-Gold progression is real and the coaches push the right way."</p>
+          <div class="flex items-center justify-between gap-3 mt-auto pt-5 border-t border-black/5">
+            <div>
+              <p class="text-ink font-bold text-sm">Marcus R.</p>
+              <p class="text-ink/55 text-xs">North Royalton, OH</p>
+            </div>
+            <span class="text-ink/40 text-xs font-semibold uppercase tracking-wider">Google</span>
+          </div>
+        </article>
+      </li>
+
+      <li class="snap-start flex-shrink-0 w-[88%] sm:w-[60%] md:w-[42%] lg:w-[32%]">
+        <article class="h-full bg-white rounded-2xl p-7 md:p-8 shadow-sm border border-black/5 flex flex-col">
+          <div class="flex items-center gap-1 mb-5" aria-label="5 star rating">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#0DC7F3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#0DC7F3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#0DC7F3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#0DC7F3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#0DC7F3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="text-ink text-lg md:text-xl leading-snug font-extrabold mb-6 normal-case flex-1">"Signed up for adult lessons at 38 after avoiding pools my whole life. I can swim now. They made it feel easy and never embarrassing."</p>
+          <div class="flex items-center justify-between gap-3 mt-auto pt-5 border-t border-black/5">
+            <div>
+              <p class="text-ink font-bold text-sm">Priya S.</p>
+              <p class="text-ink/55 text-xs">Lakewood, OH</p>
+            </div>
+            <span class="text-ink/40 text-xs font-semibold uppercase tracking-wider">Google</span>
+          </div>
+        </article>
+      </li>
+
+      <li class="snap-start flex-shrink-0 w-[88%] sm:w-[60%] md:w-[42%] lg:w-[32%]">
+        <article class="h-full bg-white rounded-2xl p-7 md:p-8 shadow-sm border border-black/5 flex flex-col">
+          <div class="flex items-center gap-1 mb-5" aria-label="5 star rating">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#0DC7F3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#0DC7F3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#0DC7F3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#0DC7F3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="#0DC7F3"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="text-ink text-lg md:text-xl leading-snug font-extrabold mb-6 normal-case flex-1">"Booking, make-ups, and billing are all painless. The class quality alone is worth it but the operations are what made us stay."</p>
+          <div class="flex items-center justify-between gap-3 mt-auto pt-5 border-t border-black/5">
+            <div>
+              <p class="text-ink font-bold text-sm">Erin B.</p>
+              <p class="text-ink/55 text-xs">Avon, OH</p>
+            </div>
+            <span class="text-ink/40 text-xs font-semibold uppercase tracking-wider">Google</span>
+          </div>
+        </article>
+      </li>
+
+    </ul>
+
+    <div class="mt-8 md:mt-10 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <p class="text-ink/60 text-sm">Hundreds of 5-star Google reviews from across Cleveland's west and south side.</p>
+      <a href="https://www.google.com/search?q=liquid+lifestyles+swim+school+reviews" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-ink font-extrabold uppercase tracking-wide text-sm hover:text-brand transition">
+        Read all reviews on Google
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+    </div>
+
+  </div>
+</section>
+
 <section class="w-full bg-[#0a2840] py-16 md:py-24 px-6 md:px-12">
   <div class="max-w-7xl mx-auto">
     <div class="grid grid-cols-1 md:grid-cols-3 rounded-2xl overflow-hidden shadow-2xl">
@@ -485,6 +656,33 @@
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', function () { vh = window.innerHeight; update(); });
     update();
+  })();
+
+  (function () {
+    var track = document.getElementById('reviewsTrack');
+    var prev = document.getElementById('reviewsPrev');
+    var next = document.getElementById('reviewsNext');
+    if (!track || !prev || !next) return;
+
+    function step() {
+      var card = track.querySelector('li');
+      if (!card) return 320;
+      var style = window.getComputedStyle(track);
+      var gap = parseFloat(style.columnGap || style.gap || '0') || 0;
+      return card.getBoundingClientRect().width + gap;
+    }
+
+    function updateButtons() {
+      var max = track.scrollWidth - track.clientWidth - 2;
+      prev.disabled = track.scrollLeft <= 0;
+      next.disabled = track.scrollLeft >= max;
+    }
+
+    prev.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
+    next.addEventListener('click', function () { track.scrollBy({ left: step(), behavior: 'smooth' }); });
+    track.addEventListener('scroll', updateButtons, { passive: true });
+    window.addEventListener('resize', updateButtons);
+    updateButtons();
   })();
 
   (function () {

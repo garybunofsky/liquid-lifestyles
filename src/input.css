@@ -345,3 +345,12 @@ body[data-theme="find-your-class"] {
   border-radius: 9999px;
   transition: width .35s ease;
 }
+
+/* Hide native scrollbar on carousels while preserving scroll */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
